@@ -152,7 +152,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\General\Extern\Extern.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\Scenes\SceneManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\General\Enitity\Enitity.h" />
+    <ClInclude Include="..\src\General\Extern\Extern.h" />
+    <ClInclude Include="..\src\Scenes\SceneManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
