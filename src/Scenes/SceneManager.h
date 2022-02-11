@@ -8,10 +8,15 @@ namespace game
 	extern SceneList actualScene;
 	extern SceneList nextScene;
 
-	void Init();
+	void GeneralInit();
+	void GeneralUpdate();
+	void GeneralDraw();
+	void GeneralDeinit();
+
 	void Update();
 	void Draw();
-	void Deinit();
+
+	void CheckNextScene();
 
 }
 

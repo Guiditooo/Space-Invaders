@@ -152,13 +152,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\General\Enitity\Entity.cpp" />
     <ClCompile Include="..\src\General\Extern\Extern.cpp" />
+    <ClCompile Include="..\src\General\Starter\GameStarter.cpp" />
+    <ClCompile Include="..\src\General\Vec2\vec2.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\Scenes\Gameplay\Bullet\Bullet.cpp" />
+    <ClCompile Include="..\src\Scenes\Gameplay\Gameplay.cpp" />
+    <ClCompile Include="..\src\Scenes\Gameplay\Player\Player.cpp" />
     <ClCompile Include="..\src\Scenes\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\General\Enitity\Enitity.h" />
+    <ClInclude Include="..\src\General\Enitity\Entity.h" />
     <ClInclude Include="..\src\General\Extern\Extern.h" />
+    <ClInclude Include="..\src\General\Starter\GameStarter.h" />
+    <ClInclude Include="..\src\General\Vec2\vec2.h" />
+    <ClInclude Include="..\src\Scenes\Gameplay\Bullet\Bullet.h" />
+    <ClInclude Include="..\src\Scenes\Gameplay\Gameplay.h" />
+    <ClInclude Include="..\src\Scenes\Gameplay\Player\Player.h" />
     <ClInclude Include="..\src\Scenes\SceneManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

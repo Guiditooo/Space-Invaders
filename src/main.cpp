@@ -1,18 +1,28 @@
-#include "raylib.h"
+#include "General/Starter/GameStarter.h"
+
+#include "Scenes/Gameplay/Gameplay.h"
+
+using namespace game;
 
 int main()
 {
-	InitWindow(500, 500, "Space Invaders");
-	SetTargetFPS(60);
+
+	starter::StartWindow();
+
+	gameplay::Init();
+
 	do
 	{
 		BeginDrawing();
-		ClearBackground(BLACK);
-		DrawRectangle(200, 200, 10, 10, RED);
+		ClearBackground(BLACK); 
+		gameplay::Update();
+		gameplay::Draw();
 		EndDrawing();
+
 	} while (!WindowShouldClose());
 
-	CloseWindow();
+	
+	starter::EndWindow();
 	
 	return 0;
 }

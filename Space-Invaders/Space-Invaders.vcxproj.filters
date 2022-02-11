@@ -16,6 +16,27 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Extras">
+      <UniqueIdentifier>{e5530e69-dd83-4fe9-88fd-680cc0e156b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include=".Game Starter">
+      <UniqueIdentifier>{79604688-e76f-4979-8ee0-414fe2de2d7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{e9b6b862-9835-4a99-a4f6-be7d1635989b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Gameplay">
+      <UniqueIdentifier>{56d8cc5f-0c6d-4110-8edd-4dd54274b91c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Gameplay\Player">
+      <UniqueIdentifier>{db9cc877-cf4f-4fed-80f5-4dc583c8618f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Gameplay\Bullet">
+      <UniqueIdentifier>{b4f61d88-457d-47eb-8513-be8d6b42ff52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Gameplay\Enemy">
+      <UniqueIdentifier>{d809ec3f-f8ae-40dc-96aa-0e9ac4703962}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -27,16 +48,49 @@
     <ClCompile Include="..\src\Scenes\SceneManager.cpp">
       <Filter>Scene Manager</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\General\Vec2\vec2.cpp">
+      <Filter>Extras</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\General\Enitity\Entity.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\General\Starter\GameStarter.cpp">
+      <Filter>.Game Starter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Scenes\Gameplay\Gameplay.cpp">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Scenes\Gameplay\Player\Player.cpp">
+      <Filter>Scenes\Gameplay\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Scenes\Gameplay\Bullet\Bullet.cpp">
+      <Filter>Scenes\Gameplay\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\General\Enitity\Enitity.h">
-      <Filter>Entity</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\General\Extern\Extern.h">
       <Filter>Extern</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Scenes\SceneManager.h">
       <Filter>Scene Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\General\Vec2\vec2.h">
+      <Filter>Extras</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\General\Enitity\Entity.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\General\Starter\GameStarter.h">
+      <Filter>.Game Starter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Scenes\Gameplay\Gameplay.h">
+      <Filter>Scenes\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Scenes\Gameplay\Player\Player.h">
+      <Filter>Scenes\Gameplay\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Scenes\Gameplay\Bullet\Bullet.h">
+      <Filter>Scenes\Gameplay\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
