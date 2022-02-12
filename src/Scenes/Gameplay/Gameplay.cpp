@@ -1,32 +1,38 @@
 #include "Gameplay.h"
+#include <iostream>
 
 namespace game
 {
 
 	namespace gameplay
 	{
-		Player p;
+
+		int level = STARTING_LEVEL;
+
+		Player player;
 		Bullet playerBullets[PLAYER_BULLET_COUNT];
+		Bullet enemyBullets[ENEMY_BULLET_COUNT];
 		Enemy enemy[ENEMY_COUNT];
 
 		void Init()
 		{
-			p.SetPosition(static_cast<float>(screen::width / 2 - p.GetEntityWidth() / 2), static_cast<float>(screen::height) - static_cast<float>(100));
+			ResetEnemies();
+			player.SetPosition(static_cast<float>(screen::width / 2 - player.GetEntityWidth() / 2), static_cast<float>(screen::height) - static_cast<float>(100));
 		}
 		void Update() 
 		{
 			if (IsKeyPressed(KEY_S))
 			{
-				p.TurnNextColor();
+				player.TurnNextColor();
 			}
 
 			if (IsKeyDown(KEY_D))
 			{
-				p.MoveRight();
+				player.MoveRight();
 			}
 			else if (IsKeyDown(KEY_A))
 			{
-				p.MoveLeft();
+				player.MoveLeft();
 			}
 
 			if (IsKeyPressed(KEY_SPACE))
@@ -37,9 +43,9 @@ namespace game
 					if (!playerBullets[i].IsActive())
 					{
 						playerBullets[i].SetActive();
-						Vec2 posP = p.GetPosition();
-						playerBullets[i].SetPosition(posP.x + p.GetEntityWidth() / 2 - playerBullets[i].GetEntityWidth() / 2, posP.y + p.GetEntityHeight() / 2 - playerBullets[i].GetEntityHeight());
-						playerBullets[i].SetEntityType(p.GetEntityType());
+						Vec2 posP = player.GetPosition();
+						playerBullets[i].SetPosition(posP.x + player.GetEntityWidth() / 2 - playerBullets[i].GetEntityWidth() / 2, posP.y + player.GetEntityHeight() / 2 - playerBullets[i].GetEntityHeight());
+						playerBullets[i].SetEntityType(player.GetEntityType());
 						break;
 					}
 				}
@@ -66,13 +72,12 @@ namespace game
 				playerBullets[i].Update();
 			}
 
-
 		}
 		void Draw()
 		{
 			//Background (with parallax included) draws first at all
  
-			p.Draw(); //Player draws second
+			player.Draw(); //Player draws second
 
 			for (short i = 0; i < ENEMY_COUNT; i++) //Enemy draws second
 			{
@@ -86,6 +91,9 @@ namespace game
 				playerBullets[i].Draw();
 			}
 		}
+		void Deinit()
+		{
+		}
 		void ResetEnemies()
 		{
 			enemy->ResetEnemyCount();
@@ -98,6 +106,7 @@ namespace game
 		void CheckCollitions()
 		{
 			CheckPlayerBulletsAgainstEnemies();
+			CheckEnemyBulletsAgainstPlayer();
 		}
 
 		void CheckPlayerBulletsAgainstEnemies()
@@ -125,6 +134,10 @@ namespace game
 					}
 				}
 			}
+		}
+		void CheckEnemyBulletsAgainstPlayer()
+		{
+
 		}
 		void Deinit();
 

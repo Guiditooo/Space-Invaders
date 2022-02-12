@@ -16,7 +16,9 @@ namespace game
 		
 		int GetEnemyID();
 		static void ResetEnemyCount();
+
 		void Kill();
+		void ResetEnemy();
 
 		void Update() override;
 	};

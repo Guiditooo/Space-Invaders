@@ -11,6 +11,8 @@ namespace game
 	namespace gameplay
 	{
 
+		extern int level;
+
 		void Init();
 		void Update();
 		void Draw();
