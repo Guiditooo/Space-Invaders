@@ -6,8 +6,8 @@ namespace game
 	namespace gameplay
 	{
 		Player p;
-		Bullet playerBullets[PLAYER_BULLETS];
-		Enemy e;
+		Bullet playerBullets[PLAYER_BULLET_COUNT];
+		Enemy enemy[ENEMY_COUNT];
 
 		void Init()
 		{
@@ -32,7 +32,7 @@ namespace game
 			if (IsKeyPressed(KEY_SPACE))
 			{
 
-				for (short i = 0; i < PLAYER_BULLETS; i++)
+				for (short i = 0; i < PLAYER_BULLET_COUNT; i++)
 				{
 					if (!playerBullets[i].IsActive())
 					{
@@ -48,12 +48,20 @@ namespace game
 
 			if (IsKeyPressed(KEY_R)) //Reset enemy just to watch if it changes color
 			{
-				e = Enemy();
+				ResetEnemies();
 			}
 
-			e.Update();
+			CheckCollitions();
+
+			for (short i = 0; i < ENEMY_COUNT; i++)
+			{
+				if (enemy[i].IsActive())
+				{
+					enemy[i].Update();
+				}
+			}
 			
-			for (short i = 0; i < PLAYER_BULLETS; i++)
+			for (short i = 0; i < PLAYER_BULLET_COUNT; i++)
 			{
 				playerBullets[i].Update();
 			}
@@ -62,12 +70,61 @@ namespace game
 		}
 		void Draw()
 		{
-			p.Draw();
-			for (short i = 0; i < PLAYER_BULLETS; i++)
+			//Background (with parallax included) draws first at all
+ 
+			p.Draw(); //Player draws second
+
+			for (short i = 0; i < ENEMY_COUNT; i++) //Enemy draws second
+			{
+				enemy[i].Draw();
+			}
+
+			//Enemy Bullets draws third #ONGOING
+
+			for (short i = 0; i < PLAYER_BULLET_COUNT; i++) //Player bullets draws at last
 			{
 				playerBullets[i].Draw();
 			}
-			e.Draw();
+		}
+		void ResetEnemies()
+		{
+			enemy->ResetEnemyCount();
+			for (short i = 0; i < ENEMY_COUNT; i++)
+			{
+				enemy[i] = Enemy();
+			}
+		}
+
+		void CheckCollitions()
+		{
+			CheckPlayerBulletsAgainstEnemies();
+		}
+
+		void CheckPlayerBulletsAgainstEnemies()
+		{
+			for (short i = 0; i < PLAYER_BULLET_COUNT; i++)
+			{
+				if (playerBullets[i].IsActive())
+				{
+					for (short j = 0; j < ENEMY_COUNT; j++)
+					{
+						if (enemy[j].IsActive())
+						{
+							if (CheckCollisionRecs(playerBullets[i].GetRectangle(), enemy[j].GetRectangle()))
+							{
+								
+								if (playerBullets[i].GetEntityType() == enemy[j].GetEntityType())
+								{
+									enemy[j].Kill();
+								}
+
+								playerBullets[i].SetInactive();
+
+							}
+						}
+					}
+				}
+			}
 		}
 		void Deinit();
 

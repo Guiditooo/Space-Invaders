@@ -3,7 +3,7 @@
 namespace game
 {
 	
-	game::Entity::Entity()
+	Entity::Entity()
 	{
 		pos.x = static_cast<float>(screen::width) / 2;
 		pos.y = 0;
@@ -15,14 +15,14 @@ namespace game
 		active = false;
 	}
 
-	game::Entity::~Entity()
+	Entity::~Entity()
 	{
 
 	}
 
 
 
-	void game::Entity::SetPosition(Vec2 newPos)
+	void Entity::SetPosition(Vec2 newPos)
 	{
 		pos = newPos;
 	}
@@ -33,7 +33,7 @@ namespace game
 		pos.y = y;
 	}
 
-	void game::Entity::SetEntityType(EntityType newType)
+	void Entity::SetEntityType(EntityType newType)
 	{
 		type = newType;
 
@@ -59,14 +59,14 @@ namespace game
 		}
 	}
 
-	void game::Entity::SetEntityWidth(float newWidth)
+	void Entity::SetEntityWidth(float newWidth)
 	{
 		width = newWidth;
 		if (texture != nullptr) texture->width = static_cast<int>(newWidth);
 
 	}
 
-	void game::Entity::SetEntityHeight(float newHeight)
+	void Entity::SetEntityHeight(float newHeight)
 	{
 		height = newHeight;
 		if (texture != nullptr) texture->height = static_cast<int>(newHeight);
@@ -108,7 +108,7 @@ namespace game
 
 	}
 
-	void game::Entity::SetTexture(Texture2D* newTexture)
+	void Entity::SetTexture(Texture2D* newTexture)
 	{
 		texture = newTexture;
 		texture->width = static_cast<int>(width);
@@ -125,7 +125,7 @@ namespace game
 		active = false;
 	}
 
-	Vec2 game::Entity::GetPosition()
+	Vec2 Entity::GetPosition()
 	{
 		return pos;
 	}
@@ -135,12 +135,12 @@ namespace game
 		return type;
 	}
 
-	float game::Entity::GetEntityWidth()
+	float Entity::GetEntityWidth()
 	{
 		return width;
 	}
 
-	float game::Entity::GetEntityHeight()
+	float Entity::GetEntityHeight()
 	{
 		return height;
 	}
@@ -150,7 +150,7 @@ namespace game
 		return color;
 	}
 
-	Texture2D* game::Entity::GetTexture()
+	Texture2D* Entity::GetTexture()
 	{
 		return texture;
 	}
@@ -170,7 +170,7 @@ namespace game
 		return active;
 	}
 
-	void game::Entity::Draw()
+	void Entity::Draw()
 	{
 		if (IsActive())
 		{

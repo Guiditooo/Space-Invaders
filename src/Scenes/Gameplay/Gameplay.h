@@ -8,9 +8,6 @@
 namespace game
 {
 
-	const int PLAYER_BULLETS = 10;
-	const int ENEMY_COUNT = 20;
-
 	namespace gameplay
 	{
 
@@ -18,6 +15,12 @@ namespace game
 		void Update();
 		void Draw();
 		void Deinit();
+
+		void ResetEnemies();
+
+		void CheckCollitions();
+		void CheckPlayerBulletsAgainstEnemies();
+		void CheckEnemyBulletsAgainstPlayer();
 
 	}
 

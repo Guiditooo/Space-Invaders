@@ -8,11 +8,15 @@ namespace game
 	class Enemy : public Entity
 	{
 	private:
-		static int enemyID;
+		int enemyID;
+		static int enemyCount;
 	public:
 		Enemy();
 		~Enemy();
+		
 		int GetEnemyID();
+		static void ResetEnemyCount();
+		void Kill();
 
 		void Update() override;
 	};

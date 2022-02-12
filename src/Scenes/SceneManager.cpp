@@ -7,9 +7,9 @@ namespace game
 
 	void GeneralInit() // INITS THINGS THAT WILL START WITH THE GAME INIT, LIKE IMAGES AND MUSIC
 	{
-		enemy[0] = LoadTexture("");
-		enemy[1] = LoadTexture("");
-		enemy[2] = LoadTexture("");
+		differentEnemies[0] = LoadTexture("");
+		differentEnemies[1] = LoadTexture("");
+		differentEnemies[2] = LoadTexture("");
 	}
 
 	void GeneralUpdate() // UPGRADES THIGS THAT WILL BELONG AMONG ALL THE GAME, LIKE MUSIC PLAYERS
@@ -24,7 +24,7 @@ namespace game
 	{
 		for (short i = 0; i < DIFFERENT_ENEMY_COUNT; i++)
 		{
-			UnloadTexture(enemy[i]);
+			UnloadTexture(differentEnemies[i]);
 		}
 	}
 
