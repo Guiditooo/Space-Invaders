@@ -66,6 +66,9 @@
     <ClCompile Include="..\src\Scenes\Gameplay\Bullet\Bullet.cpp">
       <Filter>Scenes\Gameplay\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Scenes\Gameplay\Enemy\Enemy.cpp">
+      <Filter>Scenes\Gameplay\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\General\Extern\Extern.h">
@@ -91,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Scenes\Gameplay\Bullet\Bullet.h">
       <Filter>Scenes\Gameplay\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Scenes\Gameplay\Enemy\Enemy.h">
+      <Filter>Scenes\Gameplay\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,9 +7,9 @@ namespace game
 	{
 		pos.x = static_cast<float>(screen::width) / 2;
 		pos.y = 0;
-		width = 100;
-		height = 100;
-		type = EntityType::ENTITY_ORANGE; // BLACK OR WHITE OR NONE
+		width = gameplay::entityWidth;
+		height = gameplay::entityHeight;
+		type = EntityType::ENTITY_ORANGE; // Orange, Cya, Lime or Pink
 		color = ORANGE;
 		texture = nullptr;
 		active = false;
@@ -36,6 +36,27 @@ namespace game
 	void game::Entity::SetEntityType(EntityType newType)
 	{
 		type = newType;
+
+		switch (newType)
+		{
+		case game::EntityType::ENTITY_ORANGE:
+			color = ORANGE;
+			break;
+		case game::EntityType::ENTITY_CYAN:
+			color = SKYBLUE;
+			break;
+		case game::EntityType::ENTITY_LIME:
+			color = LIME;
+			break;
+		case game::EntityType::ENTITY_PINK:
+			color = PINK;
+			break;
+		case game::EntityType::NONE:
+			color = WHITE;
+			break;
+		default:
+			break;
+		}
 	}
 
 	void game::Entity::SetEntityWidth(float newWidth)
@@ -132,6 +153,16 @@ namespace game
 	Texture2D* game::Entity::GetTexture()
 	{
 		return texture;
+	}
+
+	Rectangle Entity::GetRectangle()
+	{
+		Rectangle rec;
+		rec.x = this->GetPosition().x;
+		rec.y = this->GetPosition().y;
+		rec.width = this->GetEntityWidth();
+		rec.height = this->GetEntityHeight();
+		return rec;
 	}
 
 	bool Entity::IsActive()

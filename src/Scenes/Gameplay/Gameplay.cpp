@@ -7,6 +7,7 @@ namespace game
 	{
 		Player p;
 		Bullet playerBullets[PLAYER_BULLETS];
+		Enemy e;
 
 		void Init()
 		{
@@ -45,6 +46,12 @@ namespace game
 
 			}
 
+			if (IsKeyPressed(KEY_R)) //Reset enemy just to watch if it changes color
+			{
+				e = Enemy();
+			}
+
+			e.Update();
 			
 			for (short i = 0; i < PLAYER_BULLETS; i++)
 			{
@@ -60,6 +67,7 @@ namespace game
 			{
 				playerBullets[i].Draw();
 			}
+			e.Draw();
 		}
 		void Deinit();
 

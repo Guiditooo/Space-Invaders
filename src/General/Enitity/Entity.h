@@ -40,6 +40,7 @@ namespace game
 		float GetEntityHeight();
 		Color GetEntityColor();
 		Texture2D* GetTexture();
+		Rectangle GetRectangle();
 		bool IsActive();
 
 		void Draw(); //ALL ENTITIES WILL DRAW ITS UNIQUE TEXTURE IN THEIR POSITION (ALSO, IN DEBUG WILL SHOW THE HITBOX)

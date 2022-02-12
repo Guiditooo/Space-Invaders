@@ -12,6 +12,12 @@ namespace game
 	{
 		extern float bulletSpeed;
 		extern float horizontalSpeed;
+		extern float entityWidth;
+		extern float entityHeight;
+		extern float bulletWidth;
+		extern float bulletHeight;
+		extern float enemySpeedX;
+		extern float enemySpeedY;
 	}
 
 	namespace screen

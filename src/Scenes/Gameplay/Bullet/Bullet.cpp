@@ -6,16 +6,16 @@ namespace game
 	{
 		type = BulletType::PLAYER;
 
-		SetEntityWidth(20.0f);
-		SetEntityHeight(50.0f);
+		SetEntityWidth(gameplay::bulletWidth);
+		SetEntityHeight(gameplay::bulletHeight);
 	}
 	Bullet::Bullet(BulletType newBulletType, Color newColor)
 	{
 		type = newBulletType;
 		SetEntityColor(newColor);
 
-		SetEntityWidth(20.0f);
-		SetEntityHeight(50.0f);
+		SetEntityWidth(gameplay::bulletWidth);
+		SetEntityHeight(gameplay::bulletHeight);
 	}
 
 	Bullet::~Bullet()
