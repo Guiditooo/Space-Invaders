@@ -20,8 +20,6 @@ namespace game
 
 	}
 
-
-
 	void Entity::SetPosition(Vec2 newPos)
 	{
 		pos = newPos;
@@ -188,12 +186,12 @@ namespace game
 	void Entity::MoveLeft()
 	{
 		Vec2 p = this->GetPosition();
-		this->SetPosition(p.x - gameplay::horizontalSpeed, p.y);
+		this->SetPosition(p.x - (gameplay::horizontalSpeed * GetFrameTime()), p.y);
 	}
 	void Entity::MoveRight()
 	{
 		Vec2 p = this->GetPosition();
-		this->SetPosition(p.x + gameplay::horizontalSpeed, p.y);
+		this->SetPosition(p.x + (gameplay::horizontalSpeed * GetFrameTime()), p.y);
 	}
 
 }

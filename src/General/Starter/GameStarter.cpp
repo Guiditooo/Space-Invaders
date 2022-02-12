@@ -1,4 +1,5 @@
 #include "GameStarter.h"
+#include "Scenes/SceneManager.h"
 
 namespace game
 {
@@ -20,7 +21,12 @@ namespace game
 	void RunGame()
 	{
 		starter::StartWindow();
-		//loop
+		do
+		{
+			CheckNextScene();
+			Update();
+			Draw();
+		} while (!WindowShouldClose());
 		starter::EndWindow();
 	}
 

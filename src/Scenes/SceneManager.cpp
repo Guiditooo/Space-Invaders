@@ -1,15 +1,16 @@
 #include "SceneManager.h"
 
+#include "Gameplay/Gameplay.h"
+
 namespace game 
 {
+
 	SceneList actualScene = SceneList::NONE;
-	SceneList nextScene = SceneList::MENU;
+	SceneList nextScene = SceneList::GAME;
 
 	void GeneralInit() // INITS THINGS THAT WILL START WITH THE GAME INIT, LIKE IMAGES AND MUSIC
 	{
-		differentEnemies[0] = LoadTexture("");
-		differentEnemies[1] = LoadTexture("");
-		differentEnemies[2] = LoadTexture("");
+
 	}
 
 	void GeneralUpdate() // UPGRADES THIGS THAT WILL BELONG AMONG ALL THE GAME, LIKE MUSIC PLAYERS
@@ -22,10 +23,7 @@ namespace game
 
 	void GeneralDeinit() // DEINIT ALL STARTED OUTSIDE OF SCENES
 	{
-		for (short i = 0; i < DIFFERENT_ENEMY_COUNT; i++)
-		{
-			UnloadTexture(differentEnemies[i]);
-		}
+
 	}
 
 	void CheckNextScene()
@@ -41,6 +39,7 @@ namespace game
 			case game::SceneList::OPTIONS:
 				break;
 			case game::SceneList::GAME:
+				gameplay::Deinit();
 				break;
 			case game::SceneList::NONE:
 				break;
@@ -57,6 +56,7 @@ namespace game
 			case game::SceneList::OPTIONS:
 				break;
 			case game::SceneList::GAME:
+				gameplay::Init();
 				break;
 			case game::SceneList::NONE:
 				break;
@@ -82,6 +82,7 @@ namespace game
 		case game::SceneList::OPTIONS:
 			break;
 		case game::SceneList::GAME:
+			gameplay::Update();
 			break;
 		case game::SceneList::NONE:
 			break;
@@ -92,6 +93,9 @@ namespace game
 
 	void Draw() // WILL DRAW EVERYTHING: GENERAL + SCENE
 	{
+		BeginDrawing();
+		ClearBackground(BLACK);
+
 		GeneralDraw();
 
 		switch (actualScene)
@@ -103,12 +107,15 @@ namespace game
 		case game::SceneList::OPTIONS:
 			break;
 		case game::SceneList::GAME:
+			gameplay::Draw();
 			break;
 		case game::SceneList::NONE:
 			break;
 		default:
 			break;
 		}
+
+		EndDrawing();
 	}
 
 }

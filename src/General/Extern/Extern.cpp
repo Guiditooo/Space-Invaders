@@ -11,8 +11,8 @@ namespace game
 
 	namespace gameplay
 	{
-		float bulletSpeed = 5.0f;
-		float horizontalSpeed = 3.0f;
+		float bulletSpeed = 10.0f;
+		float horizontalSpeed = 160.0f;
 		float entityWidth = 65.0f;
 		float entityHeight = 60.0f;
 		float bulletWidth = entityWidth/4;
@@ -23,8 +23,9 @@ namespace game
 		float enemySpacing = 20.0f;
 		float enemySpawnPaddingX = static_cast<float>(screen::width/5);
 		float enemySpawnPaddingY = static_cast<float>(screen::height/9);
+
+		Texture2D differentEnemies[gameplay::DIFFERENT_ENEMY_COUNT];
 	}
 
-	Texture2D differentEnemies[DIFFERENT_ENEMY_COUNT];
 
 }

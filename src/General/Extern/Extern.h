@@ -6,13 +6,17 @@
 namespace game
 {
 
-	const int PLAYER_BULLET_COUNT = 10;
-
-	const int DIFFERENT_ENEMY_COUNT = 3;
-	const int ENEMY_COUNT = 20;
-
 	namespace gameplay
 	{
+
+		const int PLAYER_BULLET_COUNT = 10;
+		const int ENEMY_BULLET_COUNT = 10;
+
+		const int DIFFERENT_ENEMY_COUNT = 3;
+		const int ENEMY_COUNT = 20;
+
+		const int STARTING_LEVEL = 1;
+
 		extern float bulletSpeed;
 		extern float horizontalSpeed; //Player speed moving among X
 		extern float entityWidth;
@@ -25,6 +29,8 @@ namespace game
 		extern float enemySpacing; //Space between enemies
 		extern float enemySpawnPaddingX; //From X = 0
 		extern float enemySpawnPaddingY; //From Y = 0
+
+		extern Texture2D differentEnemies[gameplay::DIFFERENT_ENEMY_COUNT];
 	}
 
 	namespace screen
@@ -59,7 +65,7 @@ namespace game
 		PLAYER
 	};
 
-	extern Texture2D differentEnemies[DIFFERENT_ENEMY_COUNT];
+	
 
 }
 
