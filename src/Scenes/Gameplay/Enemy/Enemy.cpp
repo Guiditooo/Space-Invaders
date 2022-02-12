@@ -27,7 +27,7 @@ namespace game
 		p = this->GetPosition();
 
 		//std::cout << "\n Padding: (( " << screen::width << " - 2 * "<< gameplay::enemySpawnPaddingX << " - " << this->GetEntityWidth() << " * " << gameplay::enemyCountByRow << " ) / "<<gameplay::enemyCountByRow;
-		std::cout << "\n\n Enemy #" << enemyID << " is in:  " << p.x << " ~ " << p.y << " .";
+		//std::cout << "\n\n Enemy #" << enemyID << " is in:  " << p.x << " ~ " << p.y << " .";
 
 	}
 

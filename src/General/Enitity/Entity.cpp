@@ -9,7 +9,7 @@ namespace game
 		pos.y = 0;
 		width = gameplay::entityWidth;
 		height = gameplay::entityHeight;
-		type = EntityType::ENTITY_ORANGE; // Orange, Cya, Lime or Pink
+		type = EntityType::NONE; // Orange, Cya, Lime or Pink
 		color = ORANGE;
 		texture = nullptr;
 		active = false;
@@ -130,7 +130,7 @@ namespace game
 		return pos;
 	}
 
-	EntityType game::Entity::GetEntityType()
+	EntityType Entity::GetEntityType()
 	{
 		return type;
 	}

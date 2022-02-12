@@ -5,6 +5,7 @@ namespace game {
 	Player::Player()
 	{
 		SetActive();
+		this->SetEntityType(static_cast<EntityType>(0));
 	}
 	Player::~Player() 
 	{

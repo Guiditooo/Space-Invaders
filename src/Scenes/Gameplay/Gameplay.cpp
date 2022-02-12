@@ -39,7 +39,7 @@ namespace game
 						playerBullets[i].SetActive();
 						Vec2 posP = p.GetPosition();
 						playerBullets[i].SetPosition(posP.x + p.GetEntityWidth() / 2 - playerBullets[i].GetEntityWidth() / 2, posP.y + p.GetEntityHeight() / 2 - playerBullets[i].GetEntityHeight());
-						playerBullets[i].SetEntityColor(p.GetEntityColor());
+						playerBullets[i].SetEntityType(p.GetEntityType());
 						break;
 					}
 				}
