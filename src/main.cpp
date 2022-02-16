@@ -5,7 +5,7 @@ using namespace game;
 int main()
 {
 
-	game::RunGame();
+	RunGame();
 	
 	return 0;
 }

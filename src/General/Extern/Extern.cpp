@@ -15,7 +15,7 @@ namespace game
 		float horizontalSpeed = 160.0f;
 		float entityWidth = 65.0f;
 		float entityHeight = 60.0f;
-		float bulletWidth = entityWidth/4;
+		float bulletWidth = entityWidth/5;
 		float bulletHeight = entityHeight/2;
 		float enemySpeedX = 1.0f;
 		float enemySpeedY = 0.2f;
@@ -24,8 +24,20 @@ namespace game
 		float enemySpawnPaddingX = static_cast<float>(screen::width/5);
 		float enemySpawnPaddingY = static_cast<float>(screen::height/9);
 
-		Texture2D differentEnemies[gameplay::DIFFERENT_ENEMY_COUNT];
+		Texture2D enemyTexture;
+		Texture2D enemyExtraTexture;
+		Texture2D bulletTexture;
+		Texture2D bulletExtraTexture;
+		Texture2D playerTexture;
+		Texture2D playerExtraTexture;
+
 	}
 
+	Color getRandomColor(int min, int max) 
+	{
+		return { static_cast<unsigned char>(GetRandomValue(min, max)), static_cast<unsigned char>(GetRandomValue(min, max)), static_cast<unsigned char>(GetRandomValue(min,max)), static_cast<unsigned char>(GetRandomValue(200,255)) };
+	}
+
+	Font font;
 
 }

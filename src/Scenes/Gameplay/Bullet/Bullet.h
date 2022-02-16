@@ -9,13 +9,19 @@ namespace game
 	class Bullet : public Entity
 	{
 	private:
-		BulletType type;
-
+		gameplay::BulletType bulletType;
+		EntityColor entityColor; // ORANGE / BLUE / LIME / PINK / NONE
+		TextureInfo extra;
 	public:
 		Bullet();
-		Bullet(BulletType newBulletType, Color newColor);
+		Bullet(gameplay::BulletType newBulletType, Color newColor);
 		~Bullet();
 		void Update() override;
+
+		void SetEntityType(EntityColor newEntityColor);
+		void SetExtraTexture(Texture2D* extraTexture);
+
+		EntityColor GetEntityType();
 	};
 
 }

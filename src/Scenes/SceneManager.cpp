@@ -1,6 +1,7 @@
 #include "SceneManager.h"
 
 #include "Gameplay/Gameplay.h"
+#include "Menu/Menu.h"
 
 namespace game 
 {
@@ -10,7 +11,13 @@ namespace game
 
 	void GeneralInit() // INITS THINGS THAT WILL START WITH THE GAME INIT, LIKE IMAGES AND MUSIC
 	{
-
+		font = LoadFont("res/assets/font/font.ttf");
+		gameplay::enemyExtraTexture = LoadTexture("res/assets/enemy/extra.png");
+		gameplay::bulletExtraTexture = LoadTexture("res/assets/bullet/extra.png");
+		gameplay::playerExtraTexture = LoadTexture("res/assets/player/extra.png");
+		gameplay::enemyTexture = LoadTexture("res/assets/enemy/Alien5.png");
+		gameplay::bulletTexture = LoadTexture("res/assets/bullet/Bullet6.png");
+		gameplay::playerTexture = LoadTexture("res/assets/player/Starship5.png");
 	}
 
 	void GeneralUpdate() // UPGRADES THIGS THAT WILL BELONG AMONG ALL THE GAME, LIKE MUSIC PLAYERS
@@ -23,7 +30,13 @@ namespace game
 
 	void GeneralDeinit() // DEINIT ALL STARTED OUTSIDE OF SCENES
 	{
-
+		UnloadFont(font);
+		UnloadTexture(gameplay::enemyTexture);
+		UnloadTexture(gameplay::enemyExtraTexture);
+		UnloadTexture(gameplay::bulletTexture);
+		UnloadTexture(gameplay::bulletExtraTexture);
+		UnloadTexture(gameplay::playerTexture);
+		UnloadTexture(gameplay::playerExtraTexture);
 	}
 
 	void CheckNextScene()
@@ -33,6 +46,7 @@ namespace game
 			switch (actualScene) // DEINIT ACTUAL SCENE
 			{
 			case game::SceneList::MENU:
+				menu::deinit();
 				break;
 			case game::SceneList::CREDITS:
 				break;
@@ -50,6 +64,7 @@ namespace game
 			switch (nextScene) // INIT NEXT SCENE
 			{
 			case game::SceneList::MENU:
+				menu::init();
 				break;
 			case game::SceneList::CREDITS:
 				break;
@@ -76,6 +91,7 @@ namespace game
 		switch (actualScene)
 		{
 		case game::SceneList::MENU:
+			menu::update();
 			break;
 		case game::SceneList::CREDITS:
 			break;
@@ -101,6 +117,7 @@ namespace game
 		switch (actualScene)
 		{
 		case game::SceneList::MENU:
+			menu::draw();
 			break;
 		case game::SceneList::CREDITS:
 			break;

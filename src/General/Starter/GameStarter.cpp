@@ -10,10 +10,12 @@ namespace game
 		{
 			InitWindow(screen::width, screen::height, "Space Invaders");
 			SetTargetFPS(screen::fpsRate);
+			GeneralInit();
 		}
 
 		void EndWindow()
 		{
+			GeneralDeinit();
 			CloseWindow();
 		}
 	}

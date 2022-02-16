@@ -8,12 +8,20 @@ namespace game
 	class Player : public Entity
  	{
 	private:
-		
+		EntityColor entityColor; // ORANGE / BLUE / LIME / PINK / NONE
+		TextureInfo extra;
 	public:
 		Player();
 		~Player();
+
+		void SetEntityType(EntityColor newEntityColor);
+		void SetExtraTexture(Texture2D* extraTexture);
+
+		EntityColor GetEntityType();
+
 		void Update() override;
 		void TurnNextColor();
+		void NextColor();
 	};
 }
 

@@ -28,11 +28,11 @@ namespace game
 
 			if (IsKeyDown(KEY_D))
 			{
-				player.MoveRight();
+				if (player.GetPosition().x + player.GetEntityWidth() < screen::width) player.MoveRight();
 			}
 			else if (IsKeyDown(KEY_A))
 			{
-				player.MoveLeft();
+				if (player.GetPosition().x > 0) player.MoveLeft();
 			}
 
 			if (IsKeyPressed(KEY_SPACE))
@@ -77,19 +77,22 @@ namespace game
 		{
 			//Background (with parallax included) draws first at all
  
-			player.Draw(); //Player draws second
+			for (short i = 0; i < PLAYER_BULLET_COUNT; i++) //Player bullets draws second
+			{
+				playerBullets[i].Draw();
+			}
 
-			for (short i = 0; i < ENEMY_COUNT; i++) //Enemy draws second
+			player.Draw(); //Player draws third
+			
+			//Enemy Bullets draws before enemies #ONGOING
+
+			for (short i = 0; i < ENEMY_COUNT; i++) //Enemy draws after player
 			{
 				enemy[i].Draw();
 			}
 
-			//Enemy Bullets draws third #ONGOING
 
-			for (short i = 0; i < PLAYER_BULLET_COUNT; i++) //Player bullets draws at last
-			{
-				playerBullets[i].Draw();
-			}
+			
 		}
 		void Deinit()
 		{

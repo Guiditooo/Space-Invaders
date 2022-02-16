@@ -9,10 +9,10 @@ namespace game
 		pos.y = 0;
 		width = gameplay::entityWidth;
 		height = gameplay::entityHeight;
-		type = EntityType::NONE; // Orange, Cya, Lime or Pink
 		color = ORANGE;
 		texture = nullptr;
 		active = false;
+		type = EntityType::NONE;
 	}
 
 	Entity::~Entity()
@@ -29,32 +29,6 @@ namespace game
 	{
 		pos.x = x;
 		pos.y = y;
-	}
-
-	void Entity::SetEntityType(EntityType newType)
-	{
-		type = newType;
-
-		switch (newType)
-		{
-		case game::EntityType::ENTITY_ORANGE:
-			color = ORANGE;
-			break;
-		case game::EntityType::ENTITY_CYAN:
-			color = SKYBLUE;
-			break;
-		case game::EntityType::ENTITY_LIME:
-			color = LIME;
-			break;
-		case game::EntityType::ENTITY_PINK:
-			color = PINK;
-			break;
-		case game::EntityType::NONE:
-			color = WHITE;
-			break;
-		default:
-			break;
-		}
 	}
 
 	void Entity::SetEntityWidth(float newWidth)
@@ -75,35 +49,9 @@ namespace game
 		color = newColor;
 	}
 
-	void Entity::NextColor()
+	void Entity::SetEntityType(EntityType newType)
 	{
-		type = static_cast<EntityType>(static_cast<int>(type) + 1);
-		if (type == EntityType::NONE)
-		{
-			type = static_cast<EntityType>(0);
-		}
-
-		switch (type)
-		{
-		case game::EntityType::ENTITY_ORANGE:
-			color = ORANGE;
-			break;
-		case game::EntityType::ENTITY_CYAN:
-			color = SKYBLUE;
-			break;
-		case game::EntityType::ENTITY_LIME:
-			color = LIME;
-			break;
-		case game::EntityType::ENTITY_PINK:
-			color = PINK;
-			break;
-		case game::EntityType::NONE:
-			color = WHITE;
-			break;
-		default:
-			break;
-		}
-
+		type = newType;
 	}
 
 	void Entity::SetTexture(Texture2D* newTexture)
@@ -126,11 +74,6 @@ namespace game
 	Vec2 Entity::GetPosition()
 	{
 		return pos;
-	}
-
-	EntityType Entity::GetEntityType()
-	{
-		return type;
 	}
 
 	float Entity::GetEntityWidth()
@@ -161,6 +104,11 @@ namespace game
 		rec.width = this->GetEntityWidth();
 		rec.height = this->GetEntityHeight();
 		return rec;
+	}
+
+	EntityType Entity::GetEntityType()
+	{
+		return type;
 	}
 
 	bool Entity::IsActive()

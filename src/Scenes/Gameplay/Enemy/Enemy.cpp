@@ -10,15 +10,15 @@ namespace game
 	Enemy::Enemy()
 	{
 		SetActive();
-		
-		ResetEnemy();
 
+		this->SetTexture(&gameplay::enemyTexture);
+		SetExtraTexture(&gameplay::enemyExtraTexture);
+
+		entityColor = EntityColor::NONE;
+
+		ResetEnemy();
 		enemyID = enemyCount;
 		enemyCount++;
-
-		//p = this->GetPosition();
-		//std::cout << "\n Padding: (( " << screen::width << " - 2 * "<< gameplay::enemySpawnPaddingX << " - " << this->GetEntityWidth() << " * " << gameplay::enemyCountByRow << " ) / "<<gameplay::enemyCountByRow;
-		//std::cout << "\n\n Enemy #" << enemyID << " is in:  " << p.x << " ~ " << p.y << " .";
 
 	}
 
@@ -53,7 +53,7 @@ namespace game
 	void Enemy::ResetEnemy()
 	{
 
-		this->SetEntityType(static_cast<EntityType>(GetRandomValue(0, 3)));
+		this->SetEntityType(static_cast<EntityColor>(GetRandomValue(0, 3)));
 
 		Vec2 p = this->GetPosition();
 
@@ -66,5 +66,61 @@ namespace game
 
 	}
 
+	EntityColor Enemy::GetEntityType()
+	{
+		return entityColor;
+	}
+
+	void Enemy::SetEntityType(EntityColor newEntityColor)
+	{
+		entityColor = newEntityColor;
+
+		switch (newEntityColor)
+		{
+		case game::EntityColor::ENTITY_ORANGE:
+			color = ORANGE;
+			break;
+		case game::EntityColor::ENTITY_CYAN:
+			color = SKYBLUE;
+			break;
+		case game::EntityColor::ENTITY_LIME:
+			color = LIME;
+			break;
+		case game::EntityColor::ENTITY_PINK:
+			color = PINK;
+			break;
+		case game::EntityColor::NONE:
+			color = WHITE;
+			break;
+		default:
+			break;
+		}
+	}
+
+	void Enemy::SetExtraTexture(Texture2D* extraTexture)
+	{
+		extra.texture = extraTexture;
+		extra.texture->width = static_cast<int>(this->GetEntityWidth());
+		extra.texture->height = static_cast<int>(this->GetEntityHeight());
+	}
+
+	void Enemy::Draw()
+	{
+		if (IsActive())
+		{
+			if (texture != nullptr)
+			{
+				DrawTexture(*texture, static_cast<int>(pos.x), static_cast<int>(pos.y), color);
+			}
+			else
+			{
+				DrawRectangle(static_cast<int>(pos.x), static_cast<int>(pos.y), static_cast<int>(width), static_cast<int>(height), color);
+			}
+			if (extra.texture != nullptr)
+			{
+				DrawTexture(*extra.texture, static_cast<int>(pos.x), static_cast<int>(pos.y), WHITE);
+			}
+		}
+	}
 
 }
