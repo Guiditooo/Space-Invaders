@@ -101,6 +101,13 @@
       <AdditionalLibraryDirectories>$(SolutionDir)lib\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>raylib.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>MKDIR "$(TargetDir)res/assets"
+XCOPY "$(SolutionDir)res/assets" "$(TargetDir)res/assets" /e /h /y /s
+XCOPY "$(SolutionDir)lib\dll" "$(TargetDir)" /e /h /y /s
+MKDIR "$(ProjectDir)res\assets"
+XCOPY "$(SolutionDir)res\assets" "$(ProjectDir)res\assets" /e /h /y /s</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -122,6 +129,13 @@
       <AdditionalDependencies>raylib.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
+    <PreBuildEvent>
+      <Command>MKDIR "$(TargetDir)res/assets"
+XCOPY "$(SolutionDir)res/assets" "$(TargetDir)res/assets" /e /h /y /s
+XCOPY "$(SolutionDir)lib\dll" "$(TargetDir)" /e /h /y /s
+MKDIR "$(ProjectDir)res\assets"
+XCOPY "$(SolutionDir)res\assets" "$(ProjectDir)res\assets" /e /h /y /s</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -152,26 +166,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\General\Button\Button.cpp" />
     <ClCompile Include="..\src\General\Enitity\Entity.cpp" />
     <ClCompile Include="..\src\General\Extern\Extern.cpp" />
     <ClCompile Include="..\src\General\Starter\GameStarter.cpp" />
-    <ClCompile Include="..\src\General\Vec2\vec2.cpp" />
-    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\General\Vec2\Vec2.cpp" />
+    <ClCompile Include="..\src\Main.cpp" />
+    <ClCompile Include="..\src\Scenes\Credits\Credits.cpp" />
     <ClCompile Include="..\src\Scenes\Gameplay\Bullet\Bullet.cpp" />
     <ClCompile Include="..\src\Scenes\Gameplay\Enemy\Enemy.cpp" />
     <ClCompile Include="..\src\Scenes\Gameplay\Gameplay.cpp" />
     <ClCompile Include="..\src\Scenes\Gameplay\Player\Player.cpp" />
+    <ClCompile Include="..\src\Scenes\Menu\Menu.cpp" />
     <ClCompile Include="..\src\Scenes\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\General\Button\Button.h" />
     <ClInclude Include="..\src\General\Enitity\Entity.h" />
     <ClInclude Include="..\src\General\Extern\Extern.h" />
     <ClInclude Include="..\src\General\Starter\GameStarter.h" />
-    <ClInclude Include="..\src\General\Vec2\vec2.h" />
+    <ClInclude Include="..\src\General\Vec2\Vec2.h" />
+    <ClInclude Include="..\src\Scenes\Credits\Credits.h" />
     <ClInclude Include="..\src\Scenes\Gameplay\Bullet\Bullet.h" />
     <ClInclude Include="..\src\Scenes\Gameplay\Enemy\Enemy.h" />
     <ClInclude Include="..\src\Scenes\Gameplay\Gameplay.h" />
     <ClInclude Include="..\src\Scenes\Gameplay\Player\Player.h" />
+    <ClInclude Include="..\src\Scenes\Menu\Menu.h" />
     <ClInclude Include="..\src\Scenes\SceneManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
