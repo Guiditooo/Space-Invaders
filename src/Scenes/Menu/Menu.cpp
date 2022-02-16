@@ -70,7 +70,7 @@ namespace game {
 				title[i].size = screen::height / 13;
 				title[i].pos.x = screen::width / 2 - MeasureTextEx(font, &title[i].tx[0], title->size, 1).x / 2;
 				title[i].pos.y = screen::height * (2 + i) / 13 + 5 * i;
-				title[i].color = getRandomColor(200,255);
+				title[i].color = GetRandomColor(200,255);
 
 			}
 			*/
@@ -117,7 +117,7 @@ namespace game {
 				if (static_cast<int>(timer) % BG_COLOR_CHANGE_TIMER == 0)
 				{
 					timer = 1;
-					background.color = getRandomColor(BG_COLOR_MIN, BG_COLOR_MAX);
+					background.color = GetRandomColor(BG_COLOR_MIN, BG_COLOR_MAX);
 				}
 			}
 			timer += GetFrameTime();

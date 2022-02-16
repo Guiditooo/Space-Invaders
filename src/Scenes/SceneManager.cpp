@@ -15,9 +15,9 @@ namespace game
 		gameplay::enemyExtraTexture = LoadTexture("res/assets/enemy/extra.png");
 		gameplay::bulletExtraTexture = LoadTexture("res/assets/bullet/extra.png");
 		gameplay::playerExtraTexture = LoadTexture("res/assets/player/extra.png");
-		gameplay::enemyTexture = LoadTexture("res/assets/enemy/Alien5.png");
+		gameplay::enemyTexture = LoadTexture("res/assets/enemy/Alien6.png");
 		gameplay::bulletTexture = LoadTexture("res/assets/bullet/Bullet6.png");
-		gameplay::playerTexture = LoadTexture("res/assets/player/Starship5.png");
+		gameplay::playerTexture = LoadTexture("res/assets/player/Starship7.png");
 	}
 
 	void GeneralUpdate() // UPGRADES THIGS THAT WILL BELONG AMONG ALL THE GAME, LIKE MUSIC PLAYERS

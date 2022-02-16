@@ -8,6 +8,7 @@ namespace game {
 		this->SetEntityType(static_cast<EntityColor>(0));
 
 		this->SetTexture(&gameplay::playerTexture);
+		this->SetExtraTexture(&gameplay::playerExtraTexture);
 
 		entityColor = EntityColor::NONE;
 		TurnNextColor();
@@ -91,6 +92,25 @@ namespace game {
 			break;
 		}
 
+	}
+
+	void Player::Draw()
+	{
+		if (IsActive())
+		{
+			if (texture != nullptr)
+			{
+				DrawTexture(*texture, static_cast<int>(pos.x), static_cast<int>(pos.y), color);
+			}
+			else
+			{
+				DrawRectangle(static_cast<int>(pos.x), static_cast<int>(pos.y), static_cast<int>(width), static_cast<int>(height), color);
+			}
+			if (extra.texture != nullptr)
+			{
+				DrawTexture(*extra.texture, static_cast<int>(pos.x), static_cast<int>(pos.y), WHITE);
+			}
+		}
 	}
 	
 }

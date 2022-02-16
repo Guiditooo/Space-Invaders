@@ -33,9 +33,15 @@ namespace game
 
 	}
 
-	Color getRandomColor(int min, int max) 
+	Color GetRandomColor(int min, int max) 
 	{
 		return { static_cast<unsigned char>(GetRandomValue(min, max)), static_cast<unsigned char>(GetRandomValue(min, max)), static_cast<unsigned char>(GetRandomValue(min,max)), static_cast<unsigned char>(GetRandomValue(200,255)) };
+	}
+
+	Color MakeTraslucid(Color oldColor)
+	{
+		oldColor.a = 70;
+		return oldColor;
 	}
 
 	Font font;

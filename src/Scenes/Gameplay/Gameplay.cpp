@@ -44,7 +44,7 @@ namespace game
 					{
 						playerBullets[i].SetActive();
 						Vec2 posP = player.GetPosition();
-						playerBullets[i].SetPosition(posP.x + player.GetEntityWidth() / 2 - playerBullets[i].GetEntityWidth() / 2, posP.y + player.GetEntityHeight() / 2 - playerBullets[i].GetEntityHeight());
+						playerBullets[i].SetPosition(posP.x + player.GetEntityWidth() / 2 - playerBullets[i].GetEntityWidth() / 3, posP.y + player.GetEntityHeight() / 2 - playerBullets[i].GetEntityHeight());
 						playerBullets[i].SetEntityType(player.GetEntityType());
 						break;
 					}
@@ -90,8 +90,6 @@ namespace game
 			{
 				enemy[i].Draw();
 			}
-
-
 			
 		}
 		void Deinit()

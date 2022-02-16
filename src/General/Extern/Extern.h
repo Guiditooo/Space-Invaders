@@ -78,7 +78,8 @@ namespace game
 		NONE
 	};
 
-	Color getRandomColor(int min, int max);
+	Color GetRandomColor(int min, int max);
+	Color MakeTraslucid(Color oldColor);
 
 	namespace txt
 	{

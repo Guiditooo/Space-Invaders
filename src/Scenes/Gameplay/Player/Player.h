@@ -20,6 +20,8 @@ namespace game
 		EntityColor GetEntityType();
 
 		void Update() override;
+		void Draw() override;
+
 		void TurnNextColor();
 		void NextColor();
 	};
