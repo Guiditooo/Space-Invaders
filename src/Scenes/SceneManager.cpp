@@ -6,22 +6,32 @@
 namespace game 
 {
 
-	SceneList actualScene = SceneList::NONE;
-	SceneList nextScene = SceneList::GAME;
-
 	void GeneralInit() // INITS THINGS THAT WILL START WITH THE GAME INIT, LIKE IMAGES AND MUSIC
 	{
-		font = LoadFont("res/assets/font/font.ttf");
+		font = LoadFontEx("res/assets/font/font.ttf", 100, 0, 100);
+
 		gameplay::enemyExtraTexture = LoadTexture("res/assets/enemy/extra.png");
 		gameplay::bulletExtraTexture = LoadTexture("res/assets/bullet/extra.png");
 		gameplay::playerExtraTexture = LoadTexture("res/assets/player/extra.png");
 		gameplay::enemyTexture = LoadTexture("res/assets/enemy/Alien6.png");
 		gameplay::bulletTexture = LoadTexture("res/assets/bullet/Bullet6.png");
 		gameplay::playerTexture = LoadTexture("res/assets/player/Starship7.png");
+
+		button::buttonTexture = LoadTexture("res/assets/button/Button.png");
+
 	}
 
 	void GeneralUpdate() // UPGRADES THIGS THAT WILL BELONG AMONG ALL THE GAME, LIKE MUSIC PLAYERS
 	{
+		if (fix::fixed)
+		{
+			fix::mousePos = GetMousePosition();
+		}
+		else
+		{
+			fix::mousePos = { -1,-1 };
+		}
+		
 	}
 
 	void GeneralDraw() // DRAWS EVERYTHING THAT BELONG AMONG ALL THE GAME, LIKE MENU BUTTONS
@@ -37,49 +47,51 @@ namespace game
 		UnloadTexture(gameplay::bulletExtraTexture);
 		UnloadTexture(gameplay::playerTexture);
 		UnloadTexture(gameplay::playerExtraTexture);
+		UnloadTexture(button::buttonTexture);
 	}
 
 	void CheckNextScene()
 	{
-		if (actualScene != nextScene) // WILL CHECK IF BOTH SCENES, ACTUAL AND NEXT ARE THE SAME OR NOT
+		if (scene::actualScene != scene::nextScene) // WILL CHECK IF BOTH SCENES, ACTUAL AND NEXT ARE THE SAME OR NOT
 		{
-			switch (actualScene) // DEINIT ACTUAL SCENE
+			switch (scene::actualScene) // DEINIT ACTUAL SCENE
 			{
-			case game::SceneList::MENU:
-				menu::deinit();
+			case game::scene::SceneList::MENU:
+				menu::Deinit();
 				break;
-			case game::SceneList::CREDITS:
+			case game::scene::SceneList::CREDITS:
 				break;
-			case game::SceneList::OPTIONS:
+			case game::scene::SceneList::OPTIONS:
 				break;
-			case game::SceneList::GAME:
+			case game::scene::SceneList::GAME:
 				gameplay::Deinit();
 				break;
-			case game::SceneList::NONE:
+			case game::scene::SceneList::NONE:
 				break;
 			default:
 				break;
 			}
 
-			switch (nextScene) // INIT NEXT SCENE
+			switch (scene::nextScene) // INIT NEXT SCENE
 			{
-			case game::SceneList::MENU:
-				menu::init();
+			case game::scene::SceneList::MENU:
+				menu::Init();
 				break;
-			case game::SceneList::CREDITS:
+			case game::scene::SceneList::CREDITS:
 				break;
-			case game::SceneList::OPTIONS:
+			case game::scene::SceneList::OPTIONS:
 				break;
-			case game::SceneList::GAME:
+			case game::scene::SceneList::GAME:
 				gameplay::Init();
 				break;
-			case game::SceneList::NONE:
+			case game::scene::SceneList::QUIT:
+				fix::keepLooping = false;
 				break;
 			default:
 				break;
 			}
 
-			actualScene = nextScene; // FINISHING SWITCH ACTUAL SCENE WITH THE NEXT SCENE
+			scene::actualScene = scene::nextScene; // FINISHING SWITCH ACTUAL SCENE WITH THE NEXT SCENE
 
 		}
 	}
@@ -88,23 +100,24 @@ namespace game
 	{
 		GeneralUpdate();
 
-		switch (actualScene)
+		switch (scene::actualScene)
 		{
-		case game::SceneList::MENU:
-			menu::update();
+		case game::scene::SceneList::MENU:
+			menu::Update();
 			break;
-		case game::SceneList::CREDITS:
+		case game::scene::SceneList::CREDITS:
 			break;
-		case game::SceneList::OPTIONS:
+		case game::scene::SceneList::OPTIONS:
 			break;
-		case game::SceneList::GAME:
+		case game::scene::SceneList::GAME:
 			gameplay::Update();
 			break;
-		case game::SceneList::NONE:
+		case game::scene::SceneList::NONE:
 			break;
 		default:
 			break;
 		}
+		if(!fix::fixed)	fix::fixed = true;
 	}
 
 	void Draw() // WILL DRAW EVERYTHING: GENERAL + SCENE
@@ -114,19 +127,19 @@ namespace game
 
 		GeneralDraw();
 
-		switch (actualScene)
+		switch (scene::actualScene)
 		{
-		case game::SceneList::MENU:
-			menu::draw();
+		case game::scene::SceneList::MENU:
+			menu::Draw();
 			break;
-		case game::SceneList::CREDITS:
+		case game::scene::SceneList::CREDITS:
 			break;
-		case game::SceneList::OPTIONS:
+		case game::scene::SceneList::OPTIONS:
 			break;
-		case game::SceneList::GAME:
+		case game::scene::SceneList::GAME:
 			gameplay::Draw();
 			break;
-		case game::SceneList::NONE:
+		case game::scene::SceneList::NONE:
 			break;
 		default:
 			break;

@@ -5,8 +5,6 @@
 
 namespace game
 {
-	extern SceneList actualScene;
-	extern SceneList nextScene;
 
 	void GeneralInit();
 	void GeneralUpdate();
