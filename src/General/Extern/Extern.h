@@ -53,15 +53,28 @@ namespace game
 		extern int fpsRate;
 	}
 
-	enum class SceneList
+	namespace scene
 	{
-		MENU,
-		CREDITS,
-		OPTIONS,
-		GAME,
-		QUIT,
-		NONE
-	};
+		enum class SceneList
+		{
+			MENU,
+			CREDITS,
+			OPTIONS,
+			GAME,
+			QUIT,
+			NONE
+		};
+		
+		extern SceneList actualScene;
+		extern SceneList nextScene;
+	}
+
+	namespace fix
+	{
+		extern bool fixed;
+		extern Vector2 mousePos;
+		extern bool keepLooping;
+	}
 
 	enum class EntityColor
 	{
@@ -115,6 +128,25 @@ namespace game
 
 	extern Font font; //General game font
 	const float TEXT_SPACING = 2.0f;
+	
+	namespace button
+	{
+		extern Texture2D buttonTexture;
+		extern float buttonWidth;
+		extern float buttonHeight;
+
+		const int MENU_BUTTONS_COUNT = 3;
+		const int MENU_BUTTONS_SEPARATION = 40;
+		const float MENU_BUTTONS_STARTING_POS_Y = static_cast<float>(screen::height * 4 / 9);
+
+		enum class MenuButtons
+		{
+			PLAY,
+			CREDITS,
+			EXIT
+		};
+
+	}
 
 }
 

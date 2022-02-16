@@ -22,10 +22,10 @@ namespace game
 		Entity(); // WORKS AS INIT
 		~Entity(); // WORKS AS DEINIT
 
-		void SetPosition(Vec2 newPos);
-		void SetPosition(float x, float y);
-		void SetEntityWidth(float newWidth);
-		void SetEntityHeight(float newHeight);
+		virtual void SetPosition(Vec2 newPos);
+		virtual void SetPosition(float x, float y);
+		virtual void SetEntityWidth(float newWidth);
+		virtual void SetEntityHeight(float newHeight);
 		void SetEntityColor(Color newColor);
 		void SetEntityType(EntityType newType);
 		void SetTexture(Texture2D* newTexture);

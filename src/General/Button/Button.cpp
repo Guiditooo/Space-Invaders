@@ -2,26 +2,29 @@
 
 namespace game
 {
+	void Button::CheckHover()
+	{
+		hovered = CheckCollisionPointRec(fix::mousePos, GetRectangle());
+	}
+	void Button::CheckClick()
+	{
+		if (hovered)
+		{
+			if (IsMouseButtonPressed(MouseButton::MOUSE_LEFT_BUTTON))
+			{
+				scene::nextScene = sceneToCharge;
+			}
+		}
+			
+	}
 	Button::Button()
 	{
 		SetActive();
 		type = EntityType::BUTTON;
 		hovered = false;
 		clicked = false;
-	}
-
-	Button::Button(float newWidth, float newHeight, float newX, float newY, Text newTx)
-	{
-		SetActive();
-
-		width = newWidth;
-		height = newHeight;
-		pos.x = newX;
-		pos.y = newY;
-		text = newTx;
-
-		hovered = false;
-		clicked = false;
+		SetTexture(&button::buttonTexture);
+		sceneToCharge = scene::SceneList::NONE;
 	}
 
 	Button::~Button()
@@ -39,22 +42,38 @@ namespace game
 			{
 				DrawRectangle(static_cast<int>(pos.x), static_cast<int>(pos.y), static_cast<int>(width), static_cast<int>(height), color);
 			}
-			if (border.texture != nullptr)
-			{
-				DrawTexture(*border.texture, static_cast<int>(pos.x), static_cast<int>(pos.y), border.color);
-			}
+			//if (border.texture != nullptr)
+			//{
+			//	DrawTexture(*border.texture, static_cast<int>(pos.x), static_cast<int>(pos.y), border.color);
+			//}
 			if (&font == nullptr)
 			{
 				DrawText(&text.tx[0], static_cast<int>(text.pos.x), static_cast<int>(text.pos.y), static_cast<int>(text.size), text.color);
 			}
 			else
 			{
+				if(!hovered)
 				DrawTextEx(font,&text.tx[0], text.pos.ToVector2(), text.size, TEXT_SPACING, text.color);
+				else
+					DrawTextEx(font, &text.tx[0], text.pos.ToVector2(), text.size, TEXT_SPACING, HOVERED_COLOR);
 			}
 		}
 	}
 	void Button::Update()
 	{
+		CheckHover();
+		CheckClick();
+	}
+	void Button::SetPosition(float x, float y)
+	{
+		pos.x = x;
+		pos.y = y;
+		SetTextAlignement(text.alignement);
+	}
+	void Button::SetPosition(Vec2 newPos)
+	{
+		pos = newPos;
+		SetTextAlignement(text.alignement);
 	}
 	void Button::SetTextAlignement(txt::Alignement newAlignement)
 	{
@@ -104,26 +123,37 @@ namespace game
 	void Button::SetText(Text newText)
 	{
 		text = newText;
+		SetTextAlignement(newText.alignement);
 	}
 	void Button::SetTextText(std::string newTextText)
 	{
 		text.tx = newTextText;
+		SetTextAlignement(text.alignement);
 	}
 	void Button::SetFontSize(float newfontSize)
 	{
 		text.size = newfontSize;
+		SetTextAlignement(text.alignement);
 	}
 	void Button::SetTextColor(Color newTextColor)
 	{
 		text.color = newTextColor;
 	}
-	void Button::SetTextPosition(Vec2 newPos)
+	void Button::SetEntityWidth(float newWidth)
 	{
-		text.pos = newPos;
+		this->width = newWidth;
+		this->texture->width = static_cast<int>(newWidth);
+		SetTextAlignement(text.alignement);
 	}
-	void Button::SetTextPosition(float x, float y)
+	void Button::SetEntityHeight(float newHeight)
 	{
-		text.pos = Vec2(x, y);
+		this->height = newHeight;
+		this->texture->height = static_cast<int>(newHeight);
+		SetTextAlignement(text.alignement);
+	}
+	void Button::SetSceneToCharge(scene::SceneList newSceneToCharge)
+	{
+		sceneToCharge = newSceneToCharge;
 	}
 	void Button::SetBorderTexture(Texture2D* newBorderTexture)
 	{
@@ -142,4 +172,7 @@ namespace game
 	{
 		return border.texture;
 	}
+
+
+
 }

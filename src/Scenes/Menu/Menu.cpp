@@ -17,7 +17,6 @@ namespace game {
 		int time;
 		float timer;
 
-		//Buttons buttons[howManyButtons];
 		Vector2 mousePoint = {0,0};
 
 		int hoveredOption = 0;
@@ -26,13 +25,12 @@ namespace game {
 		TextureInfo background;
 
 		Text Title;
-		Button btn;
 
-		//TextureInfo pieceBlack;
-		//TextureInfo pieceWhite;
+		Text btnText[button::MENU_BUTTONS_COUNT];
+		Button btn[button::MENU_BUTTONS_COUNT];
 
 
-		void init() {
+		void Init() {
 			
 			BG = LoadTexture("res/assets/backgrounds/MenuBG1.png");
 			
@@ -42,16 +40,34 @@ namespace game {
 
 			timer = 0;
 
-			int a = 9;
-			a--;
-
 			title->size = 120;
 			title->tx = "Coloriens";
 			title->color = WHITE;
 			Vector2 measure = MeasureTextEx(font, &title->tx[0], title->size, TEXT_SPACING);
 			title->pos = Vec2(screen::width / 2 - measure.x / 2, measure.y * 4 / 3);
+			
+			btnText[static_cast<int>(button::MenuButtons::PLAY)].tx = "PLAY";
+			btnText[static_cast<int>(button::MenuButtons::CREDITS)].tx = "CREDITS";
+			btnText[static_cast<int>(button::MenuButtons::EXIT)].tx = "EXIT";
 
-			btn = Button();
+			for (short i = 0; i < button::MENU_BUTTONS_COUNT; i++)
+			{
+
+				btnText[i].color = WHITE;
+				btnText[i].size = 70;
+
+				btn[i] = Button();
+				btn[i].SetText(btnText[i]);
+				btn[i].SetEntityWidth(button::buttonWidth);
+				btn[i].SetEntityHeight(button::buttonHeight);
+				btn[i].SetPosition(screen::width / 2 - btn[i].GetEntityWidth() / 2, button::MENU_BUTTONS_STARTING_POS_Y + (button::MENU_BUTTONS_SEPARATION + btn->GetEntityHeight()) * i);
+
+			}
+			
+			btn[static_cast<int>(button::MenuButtons::PLAY)].SetSceneToCharge(scene::SceneList::GAME);
+			btn[static_cast<int>(button::MenuButtons::CREDITS)].SetSceneToCharge(scene::SceneList::CREDITS);
+			btn[static_cast<int>(button::MenuButtons::EXIT)].SetSceneToCharge(scene::SceneList::QUIT);
+			
 
 			//Music
 			//menuMusic = LoadMusicStream("res/assets/Music/menu.mp3");
@@ -110,7 +126,7 @@ namespace game {
 			*/
 		}
 
-		void update() 
+		void Update() 
 		{
 			
 			if (timer != 0.0f) {
@@ -123,7 +139,10 @@ namespace game {
 			timer += GetFrameTime();
 			
 
-			
+			for (short i = 0; i < button::MENU_BUTTONS_COUNT; i++)
+			{
+				btn[i].Update();
+			}
 
 			/*
 			if (stTimeLoop) 
@@ -176,7 +195,7 @@ namespace game {
 
 		}
 
-		void draw() 
+		void Draw() 
 		{
 			//Color color;
 			
@@ -184,8 +203,11 @@ namespace game {
 
 			DrawTextEx(font, &title->tx[0], title->pos.ToVector2(), static_cast<float>(title->size), TEXT_SPACING, title->color);
 
-			//
-			//btn.Draw();
+			for (short i = 0; i < button::MENU_BUTTONS_COUNT; i++)
+			{
+				btn[i].Draw();
+			}
+			
 
 			/*
 			for (short i = 0; i < titleLenght; i++) 
@@ -222,7 +244,7 @@ namespace game {
 
 		}
 
-		void deinit() 
+		void Deinit() 
 		{
 			if(background.texture != nullptr)
 			UnloadTexture(*background.texture);

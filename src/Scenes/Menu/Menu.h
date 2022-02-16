@@ -21,15 +21,13 @@ namespace game {
 
 		extern Texture2D BG;
 
-		extern Button btn;
-
 		//static Sound buttonBeep;
 		//static Music menuMusic;
 
-		void init();
-		void update();
-		void draw();
-		void deinit();
+		void Init();
+		void Update();
+		void Draw();
+		void Deinit();
 
 	}
 

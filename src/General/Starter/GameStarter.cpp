@@ -26,9 +26,12 @@ namespace game
 		do
 		{
 			CheckNextScene();
-			Update();
-			Draw();
-		} while (!WindowShouldClose());
+			if (fix::keepLooping)
+			{
+				Update();
+				Draw();
+			}
+		} while (fix::keepLooping);
 		starter::EndWindow();
 	}
 

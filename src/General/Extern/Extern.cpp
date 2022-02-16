@@ -9,6 +9,20 @@ namespace game
 		int fpsRate = 60;
 	}
 
+	namespace scene
+	{
+		SceneList actualScene = SceneList::NONE;
+		SceneList nextScene = SceneList::MENU;
+	}
+		
+
+	namespace fix
+	{
+		bool fixed = false;
+		Vector2 mousePos = { 0,0 };
+		bool keepLooping = true;
+	}
+
 	namespace gameplay
 	{
 		float bulletSpeed = 10.0f;
@@ -45,5 +59,11 @@ namespace game
 	}
 
 	Font font;
+	namespace button
+	{
+		Texture2D buttonTexture;
+		float buttonWidth = 400.0f;
+		float buttonHeight = 100.0f;
+	}
 
 }
