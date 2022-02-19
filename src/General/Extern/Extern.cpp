@@ -62,8 +62,8 @@ namespace game
 	namespace button
 	{
 		Texture2D buttonTexture;
-		float buttonWidth = 400.0f;
-		float buttonHeight = 100.0f;
+		float buttonWidth = static_cast<float>(screen::width / 10 * 4);
+		float buttonHeight = static_cast<float>(screen::width / 10);
 	}
 
 }

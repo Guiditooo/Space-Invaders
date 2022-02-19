@@ -130,7 +130,7 @@ namespace game
 		text.tx = newTextText;
 		SetTextAlignement(text.alignement);
 	}
-	void Button::SetFontSize(float newfontSize)
+	void Button::SetTextSize(float newfontSize)
 	{
 		text.size = newfontSize;
 		SetTextAlignement(text.alignement);

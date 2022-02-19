@@ -36,7 +36,7 @@ namespace game
 		void SetTextAlignement(txt::Alignement newAlignement);
 		void SetText(Text newText);
 		void SetTextText(std::string newTextText);
-		void SetFontSize(float newfontSize);
+		void SetTextSize(float newfontSize);
 		void SetTextColor(Color newTextColor);
 		void SetEntityWidth(float newWidth) override;
 		void SetEntityHeight(float newHeight) override;
