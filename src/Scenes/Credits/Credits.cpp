@@ -1,136 +1,72 @@
 #include "Credits.h"
 
-namespace final {
+#include "General/Button/Button.h"
 
-	namespace credits {
+namespace game 
+{
 
-		const float toAugment = 1.3f;
-		const float toDisminish = 10 / 13;
+	namespace credits 
+	{
+
 		const int howManyCreditLines = 4;
 		const int textSize = 30;
 		const int textPadding = 30;
 
 		const int buttonSize = 60;
+		
+		Text title;
+		Button closeButton;
 
-		//Text credits[howManyCreditLines];
-		//
-		//TextureInfo background;
-		//Buttons buttonExit;
+		TextureInfo background;
+		Texture2D BG;
 
-		Vector2 mousePos;		
+		int time;
+		float timer;
 
-		void init()
+		void Init()
 		{
-			/*
-			string lines[howManyCreditLines] =
-			{
-				"Programmer:  Guido Tello",
-				"Textures by:  CRAFTPIX.NET",
-				"Music:  Fiesta Online OST",
-				    "Created Using Raylib"
-			};
 
-			for (short i = 0; i < howManyCreditLines; i++)
-			{
-				credits[i].tx = lines[i];
-				credits[i].size = textSize;
-				credits[i].color = WHITE;
-				credits[i].pos.x = config::screen::width * 2 / 7;
-				credits[i].pos.y = config::screen::height * 1 / 5 + textPadding*i + i *  MeasureTextEx(font, &credits[i].tx[0], textSize, 1).y;
-			}
-			credits[3].pos.x = config::screen::width / 2 - MeasureTextEx(font, &credits[3].tx[0], textSize, 1).x / 2;
+			BG = LoadTexture("res/assets/backgrounds/MenuBG1.png");
 
-			creditMusic = LoadMusicStream("res/assets/Music/credits.mp3");
-			PlayMusicStream(creditMusic);
-			SetMusicVolume(creditMusic, 0.1f);
+			background.texture = &BG;
+			background.texture->width = screen::width;
+			background.texture->height = screen::height;
 
-			buttonBeep = LoadSound("res/assets/Sounds/buttonClic.ogg");
-			SetSoundVolume(buttonBeep, 0.3f);
-
-			background.texture = LoadTexture("res/assets/Backgrounds/BG.png");
-			buttonExit.texture.texture = LoadTexture("res/assets/Buttons/CloseButton.png");
-
-			background.texture.height = config::screen::height;
-			background.texture.width = config::screen::width;
-
-			buttonExit.texture.texture.width = buttonSize;
-			buttonExit.texture.texture.height = buttonSize;
-			buttonExit.square.width = buttonSize;
-			buttonExit.square.height = buttonSize;
-
-			buttonExit.selected = false;
-			buttonExit.clicked = false;
-			*/
-		}
-		void update()
-		{
-			/*
-			mousePos = GetMousePosition();
-
-			if (playMusic)
-			{
-				UpdateMusicStream(creditMusic);
-			}
-			if (CheckCollisionPointRec(mousePos, buttonExit.square)) 
-			{
-				
-				if (!buttonExit.selected)
-				{
-					buttonExit.scale = plusSelected;
-
-					if (playSounds)
-					{
-						PlaySound(buttonBeep);
-					}
-				}
-				buttonExit.selected = true;
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-				{
-					buttonExit.clicked = true;
-				}
-				if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) 
-				{
-					config::scenes::next_scene = config::scenes::Scene::MENU;
-					
-				}
-			}
-			else
-			{
-				buttonExit.scale = nonSelected;
-				buttonExit.selected = false;
-			}
-
-			*/
+			closeButton.SetEntityWidth(buttonSize);
+			closeButton.SetEntityHeight(buttonSize);
+			closeButton.SetPosition(Vec2(screen::width - closeButton.GetEntityWidth() * 2, closeButton.GetEntityHeight()));
+			closeButton.SetTextText("X");
+			closeButton.SetTextSize(40);
+			closeButton.SetTextColor(WHITE);
+			closeButton.SetTextAlignement(txt::Alignement::CENTER_MID);
+			closeButton.SetSceneToCharge(scene::SceneList::MENU);
+			closeButton.SetTexture(&button::buttonTexture);
 		}
 
-		void draw()
+		void Update()
 		{
-			/*
-			DrawTexture(background.texture, 0, 0, WHITE);
-			if (buttonExit.clicked)
-			{
-				DrawTextureEx(buttonExit.texture.texture, { 0,0 }, 0, buttonExit.scale, BROWN);
-			}
-			else
-			{
-				DrawTextureEx(buttonExit.texture.texture, { 0,0 }, 0, buttonExit.scale, WHITE);
-			}
 
-			for (short i = 0; i < howManyCreditLines; i++)
-			{
-				DrawTextEx(font, &credits[i].tx[0], credits[i].pos, credits[i].size, 1, credits[i].color);
+			if (timer != 0.0f) {
+				if (static_cast<int>(timer) % BG_COLOR_CHANGE_TIMER == 0)
+				{
+					timer = 1;
+					background.color = GetRandomColor(BG_COLOR_MIN, BG_COLOR_MAX);
+				}
 			}
-			*/
+			timer += GetFrameTime();
+
+			closeButton.Update();
 		}
 
-		void deinit()
+		void Draw()
 		{
-			/*
-			UnloadTexture(background.texture);
-			UnloadTexture(buttonExit.texture.texture);
-			UnloadSound(buttonBeep);
-			UnloadMusicStream(creditMusic);
-			*/
+			DrawTexture(*background.texture, 0, 0, background.color);
+			closeButton.Draw();
+		}
+
+		void Deinit()
+		{
+			if (background.texture != nullptr) UnloadTexture(*background.texture);
 		}
 
 	}

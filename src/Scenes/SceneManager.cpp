@@ -2,6 +2,7 @@
 
 #include "Gameplay/Gameplay.h"
 #include "Menu/Menu.h"
+#include "Credits/Credits.h"
 
 namespace game 
 {
@@ -60,6 +61,7 @@ namespace game
 				menu::Deinit();
 				break;
 			case game::scene::SceneList::CREDITS:
+				credits::Deinit();
 				break;
 			case game::scene::SceneList::OPTIONS:
 				break;
@@ -78,6 +80,7 @@ namespace game
 				menu::Init();
 				break;
 			case game::scene::SceneList::CREDITS:
+				credits::Init();
 				break;
 			case game::scene::SceneList::OPTIONS:
 				break;
@@ -106,6 +109,7 @@ namespace game
 			menu::Update();
 			break;
 		case game::scene::SceneList::CREDITS:
+			credits::Update();
 			break;
 		case game::scene::SceneList::OPTIONS:
 			break;
@@ -133,6 +137,7 @@ namespace game
 			menu::Draw();
 			break;
 		case game::scene::SceneList::CREDITS:
+			credits::Draw();
 			break;
 		case game::scene::SceneList::OPTIONS:
 			break;

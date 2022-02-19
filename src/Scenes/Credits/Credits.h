@@ -3,21 +3,20 @@
 
 #include "General/Extern/Extern.h"
 
-using namespace std;
-
 namespace game 
 {
 
 	namespace credits 
 	{
 
-		static Sound buttonBeep;
-		static Music creditMusic;
+		const int BG_COLOR_MIN = 180;
+		const int BG_COLOR_MAX = 255;
+		const int BG_COLOR_CHANGE_TIMER = 2; // in seconds
 
-		void init();
-		void update();
-		void draw();
-		void deinit();
+		void Init();
+		void Update();
+		void Draw();
+		void Deinit();
 
 	}
 
