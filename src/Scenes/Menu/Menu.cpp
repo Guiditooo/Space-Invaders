@@ -15,7 +15,8 @@ namespace game {
 		bool stTimeLoop;
 
 		int time;
-		float timer;
+		float timerBG;
+		float timerT;
 
 		int hoveredOption = 0;
 		int hoveredOptionPast = 0;
@@ -36,11 +37,31 @@ namespace game {
 			background.texture->width = screen::width;
 			background.texture->height = screen::height;
 
-			timer = 0;
+			timerBG = 0;
+			timerT = 0;
 
 			title->size = 120;
 			title->tx = "Coloriens";
-			title->color = WHITE;
+			switch (static_cast<EntityColor>(GetRandomValue(0,4)))
+			{
+			case game::EntityColor::ENTITY_ORANGE:
+				title->color = ORANGE;
+				break;
+			case game::EntityColor::ENTITY_CYAN:
+				title->color = SKYBLUE;
+				break;
+			case game::EntityColor::ENTITY_LIME:
+				title->color = LIME;
+				break;
+			case game::EntityColor::ENTITY_PINK:
+				title->color = PINK;
+				break;
+			case game::EntityColor::NONE:
+			default:
+				title->color = WHITE;
+				break;
+			}
+			
 			Vector2 measure = MeasureTextEx(font, &title->tx[0], title->size, TEXT_SPACING);
 			title->pos = Vec2(screen::width / 2 - measure.x / 2, measure.y * 4 / 3);
 			
@@ -72,14 +93,61 @@ namespace game {
 		void Update() 
 		{
 			
-			if (timer != 0.0f) {
-				if (static_cast<int>(timer) % BG_COLOR_CHANGE_TIMER == 0)
+			if (IsKeyPressed(KEY_ESCAPE))
+			{
+				fix::keepLooping = false;
+			}
+
+			if (timerBG != 0.0f) 
+			{
+				if (static_cast<int>(timerBG) % BG_COLOR_CHANGE_TIMER == 0)
 				{
-					timer = 1;
+					timerBG = 1;
 					background.color = GetRandomColor(BG_COLOR_MIN, BG_COLOR_MAX);
 				}
 			}
-			timer += GetFrameTime();
+
+			if (timerT != 0.0f)
+			{
+				if (static_cast<int>(timerT) % TITLE_COLOR_CHANGE_TIMER == 0)
+				{
+					timerT = 1;
+
+					EntityColor newColor;
+					EntityColor actualColor = GetEntityColor(title->color);
+					do
+					{
+						newColor = static_cast<EntityColor>(GetRandomValue(0, 4));
+					} while (newColor == actualColor);
+
+					switch (newColor)
+					{
+					case game::EntityColor::ENTITY_ORANGE:
+						title->color = ORANGE;
+						break;
+					case game::EntityColor::ENTITY_CYAN:
+						title->color = SKYBLUE;
+						break;
+					case game::EntityColor::ENTITY_LIME:
+						title->color = LIME;
+						break;
+					case game::EntityColor::ENTITY_PINK:
+						title->color = PINK;
+						break;
+					case game::EntityColor::ENTITY_WHITE:
+						title->color = WHITE;
+						break;
+					case game::EntityColor::NONE:
+					default:
+						title->color = WHITE;
+						break;
+					}
+
+				}
+			}
+			
+			timerBG += GetFrameTime();
+			timerT += GetFrameTime();
 			
 
 			for (short i = 0; i < button::MENU_BUTTONS_COUNT; i++)

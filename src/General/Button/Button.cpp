@@ -4,7 +4,34 @@ namespace game
 {
 	void Button::CheckHover()
 	{
-		hovered = CheckCollisionPointRec(fix::mousePos, GetRectangle());
+		if (!hovered)
+		{
+			if (CheckCollisionPointRec(fix::mousePos, GetRectangle()))
+			{
+				hovered = true;
+				switch (static_cast<EntityColor>(GetRandomValue(0,3)))
+				{
+				case game::EntityColor::ENTITY_ORANGE:
+					HOVERED_COLOR = ORANGE;
+					break;
+				case game::EntityColor::ENTITY_CYAN:
+					HOVERED_COLOR = SKYBLUE;
+					break;
+				case game::EntityColor::ENTITY_LIME:
+					HOVERED_COLOR = LIME;
+					break;
+				case game::EntityColor::ENTITY_PINK:
+					HOVERED_COLOR = PINK;
+					break;
+				default:
+					break;
+				}
+			}
+		}
+		if (!CheckCollisionPointRec(fix::mousePos, GetRectangle()))
+		{
+			hovered = false;
+		}
 	}
 	void Button::CheckClick()
 	{
@@ -52,8 +79,10 @@ namespace game
 			}
 			else
 			{
-				if(!hovered)
-				DrawTextEx(font,&text.tx[0], text.pos.ToVector2(), text.size, TEXT_SPACING, text.color);
+				if (!hovered)
+				{
+					DrawTextEx(font, &text.tx[0], text.pos.ToVector2(), text.size, TEXT_SPACING, text.color);
+				}
 				else
 					DrawTextEx(font, &text.tx[0], text.pos.ToVector2(), text.size, TEXT_SPACING, HOVERED_COLOR);
 			}

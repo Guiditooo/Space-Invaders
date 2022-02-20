@@ -11,6 +11,7 @@ namespace game {
 		const int BG_COLOR_MIN = 180;
 		const int BG_COLOR_MAX = 255;
 		const int BG_COLOR_CHANGE_TIMER = 2; // in seconds
+		const int TITLE_COLOR_CHANGE_TIMER = 8; // in seconds
 
 		const int baseTextHeight = 50; // 30px
 		const int howManyButtons = 3;

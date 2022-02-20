@@ -9,8 +9,8 @@ namespace game
 	namespace credits 
 	{
 
-		const int BG_COLOR_MIN = 180;
-		const int BG_COLOR_MAX = 255;
+		const int BG_COLOR_MIN = 70;
+		const int BG_COLOR_MAX = 130;
 		const int BG_COLOR_CHANGE_TIMER = 2; // in seconds
 
 		void Init();

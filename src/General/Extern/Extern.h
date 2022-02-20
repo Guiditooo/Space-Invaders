@@ -82,6 +82,7 @@ namespace game
 		ENTITY_CYAN,
 		ENTITY_LIME,
 		ENTITY_PINK,
+		ENTITY_WHITE,
 		NONE
 	};
 
@@ -92,6 +93,7 @@ namespace game
 	};
 
 	Color GetRandomColor(int min, int max);
+	EntityColor GetEntityColor(Color color);
 	Color MakeTraslucid(Color oldColor);
 
 	namespace txt

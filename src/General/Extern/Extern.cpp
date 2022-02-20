@@ -52,6 +52,38 @@ namespace game
 		return { static_cast<unsigned char>(GetRandomValue(min, max)), static_cast<unsigned char>(GetRandomValue(min, max)), static_cast<unsigned char>(GetRandomValue(min,max)), static_cast<unsigned char>(GetRandomValue(200,255)) };
 	}
 
+	EntityColor GetEntityColor(Color color)
+	{
+		EntityColor ret;
+
+		if (color.a == ORANGE.a && color.r == ORANGE.r && color.g == ORANGE.g && color.b == ORANGE.b)
+		{
+			ret = EntityColor::ENTITY_ORANGE;
+		}
+		else if (color.a == SKYBLUE.a && color.r == SKYBLUE.r && color.g == SKYBLUE.g && color.b == SKYBLUE.b)
+		{
+			ret = EntityColor::ENTITY_CYAN;
+		}
+		else if (color.a == LIME.a && color.r == LIME.r && color.g == LIME.g && color.b == LIME.b)
+		{
+			ret = EntityColor::ENTITY_LIME;
+		}
+		else if (color.a == PINK.a && color.r == PINK.r && color.g == PINK.g && color.b == PINK.b)
+		{
+			ret = EntityColor::ENTITY_PINK;
+		}
+		else if (color.a == WHITE.a && color.r == WHITE.r && color.g == WHITE.g && color.b == WHITE.b)
+		{
+			ret = EntityColor::ENTITY_WHITE;
+		}
+		else
+		{
+			ret = EntityColor::NONE;
+		}
+
+		return ret;
+	}
+
 	Color MakeTraslucid(Color oldColor)
 	{
 		oldColor.a = 70;

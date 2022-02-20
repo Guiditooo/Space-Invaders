@@ -6,8 +6,6 @@
 namespace game
 {
 
-
-
 	class Button : public Entity
 	{
 	private:

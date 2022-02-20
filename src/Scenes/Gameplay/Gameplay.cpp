@@ -149,6 +149,7 @@ namespace game
 
 #pragma endregion
 
+#pragma region PAUSE
 			paused = false;
 
 			pauseTitle.tx = "PAUSED";
@@ -179,6 +180,7 @@ namespace game
 			pauseBackground.position.y = static_cast<float>(screen::height / 2 - static_cast<float>(pauseBackground.texture->height) / (1.72f));
 			pauseBackground.color = WHITE;
 
+#pragma endregion
 
 			ResetEnemies();
 			player.SetPosition(static_cast<float>(screen::width / 2 - player.GetEntityWidth() / 2), static_cast<float>(screen::height) - static_cast<float>(100));
