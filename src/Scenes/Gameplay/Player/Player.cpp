@@ -66,7 +66,7 @@ namespace game {
 	void Player::NextColor()
 	{
 		entityColor = static_cast<EntityColor>(static_cast<int>(entityColor) + 1);
-		if (static_cast<int>(entityColor) >= static_cast<int>(EntityColor::NONE))
+		if (static_cast<int>(entityColor) >= static_cast<int>(EntityColor::ENTITY_WHITE))
 		{
 			entityColor = static_cast<EntityColor>(0);
 		}

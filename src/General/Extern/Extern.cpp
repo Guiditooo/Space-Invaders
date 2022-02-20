@@ -21,7 +21,9 @@ namespace game
 		bool fixed = false;
 		Vector2 mousePos = { 0,0 };
 		bool keepLooping = true;
-	}
+		float fixedMoveLeft = 3;
+		float fixedMoveRight = 6.7f;
+	}		  
 
 	namespace gameplay
 	{

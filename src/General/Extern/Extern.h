@@ -74,6 +74,8 @@ namespace game
 		extern bool fixed;
 		extern Vector2 mousePos;
 		extern bool keepLooping;
+		extern float fixedMoveLeft;
+		extern float fixedMoveRight;
 	}
 
 	enum class EntityColor

@@ -211,11 +211,11 @@ namespace game
 
 					if (IsKeyDown(KEY_D))
 					{
-						if (player.GetPosition().x + player.GetEntityWidth() < screen::width) player.MoveRight();
+						if (player.GetPosition().x + player.GetEntityWidth() < static_cast<float>(screen::width - fix::fixedMoveRight)) player.MoveRight();
 					}
 					else if (IsKeyDown(KEY_A))
 					{
-						if (player.GetPosition().x > 0) player.MoveLeft();
+						if (player.GetPosition().x > fix::fixedMoveLeft) player.MoveLeft();
 					}
 
 					if (IsKeyPressed(KEY_SPACE))
