@@ -27,7 +27,7 @@ bld/
 [Oo]bj/
 [Ll]og/
 
-Space-Invaders/res/
+Space-Invaders*
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
