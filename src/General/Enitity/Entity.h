@@ -44,8 +44,8 @@ namespace game
 		virtual void Draw(); //ALL ENTITIES WILL DRAW ITS UNIQUE TEXTURE IN THEIR POSITION (ALSO, IN DEBUG WILL SHOW THE HITBOX)
 		virtual void Update() = 0; // EVERY ENTITY WILL UPGRADE BY DIFFERENT WAYS
 
-		void MoveLeft();
-		void MoveRight();
+		virtual void MoveLeft();
+		virtual void MoveRight();
 
 	};
 }

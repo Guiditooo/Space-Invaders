@@ -15,6 +15,9 @@ namespace game
 
 		const int TUTORIAL_COUNT = 4;
 		const int TUTORIAL_KEYS = 5;
+		const int GUI_SIZE = 40; 
+		const Color GUI_COLOR = WHITE; 
+
 		enum class TK
 		{
 			TUTO_A,
@@ -33,7 +36,10 @@ namespace game
 
 		void CheckCollitions();
 		void CheckPlayerBulletsAgainstEnemies();
-		void CheckEnemyBulletsAgainstPlayer();
+		
+		void ActualizeTimer();
+
+		void RestartGame();
 
 	}
 

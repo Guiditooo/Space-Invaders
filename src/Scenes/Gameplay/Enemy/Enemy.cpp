@@ -20,6 +20,9 @@ namespace game
 		enemyID = enemyCount;
 		enemyCount++;
 
+		LM = LateralMove::TO_LEFT;
+		VM = VerticalMove::TO_DOWN;
+
 	}
 
 	Enemy::~Enemy()
@@ -34,9 +37,23 @@ namespace game
 
 	void Enemy::Update()
 	{
-		//Vec2 p = this->GetPosition();
-		//SetPosition(p.x + gameplay::enemySpeedX, p.y + gameplay::enemySpeedY); MOVIMIENTO
+		if (VM == VerticalMove::TO_UP)
+		{
+			MoveUp();
+		}
+		else
+		{
+			MoveDown();
+		}
 
+		if (LM == LateralMove::TO_RIGHT)
+		{
+			MoveRight();
+		}
+		else
+		{
+			MoveLeft();
+		}
 	}
 
 	void Enemy::Kill()
@@ -48,6 +65,60 @@ namespace game
 	void Enemy::ResetEnemyCount()
 	{
 		enemyCount = 0;
+	}
+
+	void Enemy::GoLeft()
+	{
+		LM = LateralMove::TO_LEFT;
+	}
+
+	void Enemy::GoRight()
+	{
+		LM = LateralMove::TO_RIGHT;
+	}
+
+	void Enemy::GoUp()
+	{
+		VM = VerticalMove::TO_UP;
+	}
+
+	void Enemy::GoDown()
+	{
+		VM = VerticalMove::TO_DOWN;
+	}
+
+	LateralMove Enemy::GetLateralMovement()
+	{
+		return LM;
+	}
+
+	VerticalMove Enemy::GetVerticalMovement()
+	{
+		return VM;
+	}
+
+	void Enemy::MoveLeft()
+	{
+		Vec2 p = this->GetPosition();
+		this->SetPosition(p.x - (gameplay::enemySpeedX * fix::frameTime), p.y);
+	}
+
+	void Enemy::MoveRight()
+	{
+		Vec2 p = this->GetPosition();
+		this->SetPosition(p.x + (gameplay::enemySpeedX * fix::frameTime), p.y);
+	}
+
+	void Enemy::MoveUp()
+	{
+		Vec2 p = this->GetPosition();
+		this->SetPosition(p.x, p.y - (gameplay::enemySpeedX * fix::frameTime));
+	}
+
+	void Enemy::MoveDown()
+	{
+		Vec2 p = this->GetPosition();
+		this->SetPosition(p.x, p.y + (gameplay::enemySpeedX * fix::frameTime));
 	}
 
 	void Enemy::ResetEnemy()

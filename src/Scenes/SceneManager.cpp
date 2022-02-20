@@ -32,7 +32,7 @@ namespace game
 		{
 			fix::mousePos = { -1,-1 };
 		}
-		
+		fix::frameTime = GetFrameTime();
 	}
 
 	void GeneralDraw() // DRAWS EVERYTHING THAT BELONG AMONG ALL THE GAME, LIKE MENU BUTTONS

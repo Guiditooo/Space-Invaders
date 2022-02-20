@@ -20,6 +20,7 @@ namespace game
 	{
 		bool fixed = false;
 		Vector2 mousePos = { 0,0 };
+		float frameTime = 0;
 		bool keepLooping = true;
 		float fixedMoveLeft = 3;
 		float fixedMoveRight = 6.7f;
@@ -33,12 +34,15 @@ namespace game
 		float entityHeight = 60.0f;
 		float bulletWidth = entityWidth/5;
 		float bulletHeight = entityHeight/2;
-		float enemySpeedX = 1.0f;
-		float enemySpeedY = 0.2f;
+		float enemySpeedX = 20.0f;
+		float enemySpeedY = 1.0f;
 		float enemyCountByRow = 5.0f;
+		float enemyCountByColumn = 4.0f;
 		float enemySpacing = 20.0f;
 		float enemySpawnPaddingX = static_cast<float>(screen::width/5);
 		float enemySpawnPaddingY = static_cast<float>(screen::height/9);
+		float enemyMinVerticalLimit = enemySpawnPaddingY;
+		float enemyMaxVerticalLimit = (entityHeight + enemySpacing) * enemyCountByColumn + enemySpacing * 2;
 
 		Texture2D enemyTexture;
 		Texture2D enemyExtraTexture;

@@ -1,6 +1,7 @@
 #include "Gameplay.h"
 
 #include <iostream>
+#include <string>
 
 #include "General/Button/Button.h"
 
@@ -10,7 +11,18 @@ namespace game
 	namespace gameplay
 	{
 
-		int level = STARTING_LEVEL;
+		int level;
+		Text levelText;
+		int score;
+		Text scoreText;
+		int gameplayTimer;
+		Text timerText;
+
+		Text lvlFinished;
+		Text lvlFinishedContinue;
+		bool lvlCompleted;
+
+#pragma region TUTORIAL_VAR
 
 		bool tutorial;
 		Text tutorialTitle;
@@ -29,6 +41,8 @@ namespace game
 		Texture2D tutorialPlayerExtraTX;
 		Button tutorialButton;
 
+#pragma endregion
+
 		Player player;
 		Bullet playerBullets[PLAYER_BULLET_COUNT];
 		Bullet enemyBullets[ENEMY_BULLET_COUNT];
@@ -40,6 +54,11 @@ namespace game
 		Text pauseTitle;
 		Text pauseText;
 		Button pauseButton;
+
+		bool willGoDown;
+		bool willGoLeft;
+
+		float timer;
 
 		void Init()
 		{
@@ -182,8 +201,21 @@ namespace game
 
 #pragma endregion
 
-			ResetEnemies();
-			player.SetPosition(static_cast<float>(screen::width / 2 - player.GetEntityWidth() / 2), static_cast<float>(screen::height) - static_cast<float>(100));
+			RestartGame();
+
+#pragma region GUI
+
+			scoreText.pos.x = 0;
+			scoreText.pos.y = 0;
+
+			levelText.pos.x = screen::width / 2 - MeasureTextEx(font, &levelText.tx[0], GUI_SIZE, TEXT_SPACING).x / 2;
+			levelText.pos.y = 0;
+
+			timerText.pos.x = screen::width - MeasureTextEx(font, &timerText.tx[0], GUI_SIZE, TEXT_SPACING).x;
+			timerText.pos.y = 0;
+
+#pragma endregion
+
 		}
 		void Update() 
 		{
@@ -202,8 +234,11 @@ namespace game
 			}
 			else
 			{
+				
 				if (!paused)
 				{
+
+#pragma region PLAYER_MOVEMENT
 					if (IsKeyPressed(KEY_S))
 					{
 						player.TurnNextColor();
@@ -233,21 +268,72 @@ namespace game
 							}
 						}
 					}
+#pragma endregion
 
 					CheckCollitions();
 
+#pragma region ENEMY_MOVEMENT
+
 					for (short i = 0; i < ENEMY_COUNT; i++)
 					{
+						if (enemy[i].GetLateralMovement() == LateralMove::TO_RIGHT && !willGoLeft)
+						{
+							if (enemy[i].GetPosition().x > screen::width - enemy[i].GetEntityWidth())
+							{
+								willGoLeft = true;
+							}
+						}
+						if (enemy[i].GetLateralMovement() == LateralMove::TO_LEFT && willGoLeft)
+						{
+							if (enemy[i].GetPosition().x < 0)
+							{
+								willGoLeft = false;
+							}
+						}
+
+						if (enemy[i].GetVerticalMovement() == VerticalMove::TO_UP && !willGoDown)
+						{
+							if (enemy[i].GetPosition().y < enemyMinVerticalLimit )
+							{
+								willGoDown = true;
+							}
+						}
+						if (enemy[i].GetVerticalMovement() == VerticalMove::TO_DOWN && willGoDown)
+						{
+							if (enemy[i].GetPosition().y > enemyMaxVerticalLimit)
+							{
+								willGoDown = false;
+							}
+						}
+
 						if (enemy[i].IsActive())
 						{
 							enemy[i].Update();
 						}
 					}
 
+					for (short i = 0; i < ENEMY_COUNT; i++)
+					{
+						if (willGoDown) enemy[i].GoDown();
+						if (!willGoDown) enemy[i].GoUp();
+						if (willGoLeft) enemy[i].GoLeft();
+						if (!willGoLeft) enemy[i].GoRight();
+					}
+
+#pragma endregion
+
 					for (short i = 0; i < PLAYER_BULLET_COUNT; i++)
 					{
 						playerBullets[i].Update();
 					}
+
+#pragma region GUI
+
+					ActualizeTimer();
+
+#pragma endregion
+
+					timer += fix::frameTime;
 
 				}
 				else
@@ -290,18 +376,23 @@ namespace game
 			}
 			else
 			{
-				//Background (with parallax included) draws first at all
+				
+#pragma region GUI
 
-				for (short i = 0; i < PLAYER_BULLET_COUNT; i++) //Player bullets draws second
+				DrawTextEx(font, &scoreText.tx[0], scoreText.pos.ToVector2(), GUI_SIZE, TEXT_SPACING, GUI_COLOR);
+				DrawTextEx(font, &timerText.tx[0], timerText.pos.ToVector2(), GUI_SIZE, TEXT_SPACING, GUI_COLOR);
+				DrawTextEx(font, &levelText.tx[0], levelText.pos.ToVector2(), GUI_SIZE, TEXT_SPACING, GUI_COLOR);
+
+#pragma endregion	
+
+				for (short i = 0; i < PLAYER_BULLET_COUNT; i++) 
 				{
 					playerBullets[i].Draw();
 				}
 
-				player.Draw(); //Player draws third
+				player.Draw(); 
 
-				//Enemy Bullets draws before enemies #ONGOING
-
-				for (short i = 0; i < ENEMY_COUNT; i++) //Enemy draws after player
+				for (short i = 0; i < ENEMY_COUNT; i++) 
 				{
 					enemy[i].Draw();
 				}
@@ -342,7 +433,6 @@ namespace game
 		void CheckCollitions()
 		{
 			CheckPlayerBulletsAgainstEnemies();
-			CheckEnemyBulletsAgainstPlayer();
 		}
 
 		void CheckPlayerBulletsAgainstEnemies()
@@ -371,9 +461,34 @@ namespace game
 				}
 			}
 		}
-		void CheckEnemyBulletsAgainstPlayer()
+
+		void ActualizeTimer()
+		{
+			gameplayTimer = STARTING_TIMER - static_cast<int>(timer);
+			timerText.tx = std::to_string(gameplayTimer);
+			timerText.pos.x = screen::width - MeasureTextEx(font, &timerText.tx[0], GUI_SIZE, TEXT_SPACING).x;
+		}
+
+		void RestartGame()
 		{
 
+			timer = 0;
+
+			level = STARTING_LEVEL;
+			gameplayTimer = STARTING_TIMER;
+			score = STARTING_SCORE;
+			
+			levelText.tx = "Level " + std::to_string(level);
+			timerText.tx = std::to_string(gameplayTimer);
+			scoreText.tx = "Score:  " + std::to_string(score);
+
+			lvlCompleted = false;
+
+			ResetEnemies();
+			player.SetPosition(static_cast<float>(screen::width / 2 - player.GetEntityWidth() / 2), static_cast<float>(screen::height) - static_cast<float>(100));
+
+			willGoDown = true;
+			willGoLeft = true;
 		}
 
 	}

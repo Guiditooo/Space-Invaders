@@ -5,6 +5,24 @@
 
 namespace game
 {
+
+	namespace enemy
+	{
+		enum class LateralMove
+		{
+			TO_LEFT,
+			TO_RIGHT
+		};
+		enum class VerticalMove
+		{
+			TO_UP,
+			TO_DOWN
+		};
+
+	}
+
+	using namespace enemy;
+
 	class Enemy : public Entity
 	{
 	private:
@@ -12,6 +30,14 @@ namespace game
 		static int enemyCount;
 		EntityColor entityColor; // ORANGE / BLUE / LIME / PINK / NONE
 		TextureInfo extra;
+		VerticalMove VM;
+		LateralMove LM;
+
+		void MoveLeft() override;
+		void MoveRight() override;
+		void MoveUp();
+		void MoveDown();
+
 	public:
 		Enemy();
 		~Enemy();
@@ -28,6 +54,14 @@ namespace game
 		void ResetEnemy();
 		int GetEnemyID();
 		static void ResetEnemyCount();
+
+		void GoLeft();
+		void GoRight();
+		void GoUp();
+		void GoDown();
+
+		LateralMove GetLateralMovement();
+		VerticalMove GetVerticalMovement();
 
 	};
 }

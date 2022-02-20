@@ -17,6 +17,8 @@ namespace game
 		const int ENEMY_COUNT = 20;
 
 		const int STARTING_LEVEL = 1;
+		const int STARTING_TIMER = 60;
+		const int STARTING_SCORE = 0;
 
 		extern float bulletSpeed;
 		extern float horizontalSpeed; //Player speed moving among X
@@ -26,6 +28,8 @@ namespace game
 		extern float bulletHeight;
 		extern float enemySpeedX; //Velocity of the enemy moving among X
 		extern float enemySpeedY; //Velocity of the enemy moving among Y
+		extern float enemyMinVerticalLimit; // delimits the movement in Y axis
+		extern float enemyMaxVerticalLimit;
 		extern float enemyCountByRow; //Default is 5;
 		extern float enemySpacing; //Space between enemies
 		extern float enemySpawnPaddingX; //From X = 0
@@ -73,6 +77,7 @@ namespace game
 	{
 		extern bool fixed;
 		extern Vector2 mousePos;
+		extern float frameTime;
 		extern bool keepLooping;
 		extern float fixedMoveLeft;
 		extern float fixedMoveRight;
