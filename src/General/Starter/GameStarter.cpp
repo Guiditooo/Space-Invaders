@@ -8,8 +8,9 @@ namespace game
 
 		void StartWindow()
 		{
-			InitWindow(screen::width, screen::height, "Space Invaders");
+			InitWindow(screen::width, screen::height, "Coloriens");
 			SetTargetFPS(screen::fpsRate);
+			SetExitKey(KEY_F12);
 			GeneralInit();
 		}
 

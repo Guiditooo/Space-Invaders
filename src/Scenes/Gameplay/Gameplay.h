@@ -13,6 +13,17 @@ namespace game
 
 		extern int level;
 
+		const int TUTORIAL_COUNT = 4;
+		const int TUTORIAL_KEYS = 5;
+		enum class TK
+		{
+			TUTO_A,
+			TUTO_S,
+			TUTO_D,
+			TUTO_P,
+			TUTO_SPACE
+		};
+
 		void Init();
 		void Update();
 		void Draw();
