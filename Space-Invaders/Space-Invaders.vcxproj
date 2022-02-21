@@ -175,6 +175,7 @@ XCOPY "$(SolutionDir)res\assets" "$(ProjectDir)res\assets" /e /h /y /s</Command>
     <ClCompile Include="..\src\Scenes\Credits\Credits.cpp" />
     <ClCompile Include="..\src\Scenes\Gameplay\Bullet\Bullet.cpp" />
     <ClCompile Include="..\src\Scenes\Gameplay\Enemy\Enemy.cpp" />
+    <ClCompile Include="..\src\Scenes\Gameplay\GameOver\GameOver.cpp" />
     <ClCompile Include="..\src\Scenes\Gameplay\Gameplay.cpp" />
     <ClCompile Include="..\src\Scenes\Gameplay\Player\Player.cpp" />
     <ClCompile Include="..\src\Scenes\Menu\Menu.cpp" />
@@ -189,6 +190,7 @@ XCOPY "$(SolutionDir)res\assets" "$(ProjectDir)res\assets" /e /h /y /s</Command>
     <ClInclude Include="..\src\Scenes\Credits\Credits.h" />
     <ClInclude Include="..\src\Scenes\Gameplay\Bullet\Bullet.h" />
     <ClInclude Include="..\src\Scenes\Gameplay\Enemy\Enemy.h" />
+    <ClInclude Include="..\src\Scenes\Gameplay\GameOver\GameOver.h" />
     <ClInclude Include="..\src\Scenes\Gameplay\Gameplay.h" />
     <ClInclude Include="..\src\Scenes\Gameplay\Player\Player.h" />
     <ClInclude Include="..\src\Scenes\Menu\Menu.h" />

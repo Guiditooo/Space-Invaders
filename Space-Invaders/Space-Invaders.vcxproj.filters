@@ -49,6 +49,9 @@
     <Filter Include="Button">
       <UniqueIdentifier>{076b7807-10ab-4ac6-ae6d-e08e83df21d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scenes\Gameplay\GameOver">
+      <UniqueIdentifier>{6b9151bd-8bb9-4696-82d6-38fa162ecff5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\General\Extern\Extern.cpp">
@@ -90,6 +93,9 @@
     <ClCompile Include="..\src\General\Button\Button.cpp">
       <Filter>Button</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Scenes\Gameplay\GameOver\GameOver.cpp">
+      <Filter>Scenes\Gameplay\GameOver</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\General\Extern\Extern.h">
@@ -127,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="..\src\General\Button\Button.h">
       <Filter>Button</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Scenes\Gameplay\GameOver\GameOver.h">
+      <Filter>Scenes\Gameplay\GameOver</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

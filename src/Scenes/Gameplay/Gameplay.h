@@ -4,19 +4,13 @@
 #include "Player/Player.h"
 #include "Bullet/Bullet.h"
 #include "Enemy/Enemy.h"
+#include "GameOver/GameOver.h"
 
 namespace game
 {
 
 	namespace gameplay
 	{
-
-		extern int level;
-
-		const int TUTORIAL_COUNT = 4;
-		const int TUTORIAL_KEYS = 5;
-		const int GUI_SIZE = 40; 
-		const Color GUI_COLOR = WHITE; 
 
 		enum class TK
 		{
@@ -36,8 +30,13 @@ namespace game
 
 		void CheckCollitions();
 		void CheckPlayerBulletsAgainstEnemies();
+		void CheckForLevelFinished();
+		void CheckTimer();
 		
 		void ActualizeTimer();
+		void ActualizeLevel();
+		void ActualizeFinishedLevel();
+		void ActualizeScore();
 
 		void RestartGame();
 

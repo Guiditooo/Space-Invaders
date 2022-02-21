@@ -35,6 +35,20 @@ namespace game
 		extern float enemySpawnPaddingX; //From X = 0
 		extern float enemySpawnPaddingY; //From Y = 0
 
+		extern int level;
+		extern int score;
+		extern bool gameOver;
+
+		const int TUTORIAL_COUNT = 4;
+		const int TUTORIAL_KEYS = 5;
+		const int GUI_SIZE = 40;
+		const int COMPLETE_TITLE_SIZE = 55;
+		const int COMPLETE_CONTINUE_SIZE = 40;
+		const Color COLOR = WHITE;
+		const int SCORE_ADD_PER_LVL = 10;
+		const int SCORE_REMOVE_PER_LVL = 5;
+		const int TIME_ADDED_BY_COMPLETION = 15;
+
 		extern Texture2D enemyTexture;
 		extern Texture2D enemyExtraTexture;
 		extern Texture2D bulletTexture;
