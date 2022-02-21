@@ -37,9 +37,14 @@ namespace game
 	{
 		if (hovered)
 		{
-			if (IsMouseButtonPressed(MouseButton::MOUSE_LEFT_BUTTON))
+			clicked = IsMouseButtonPressed(MouseButton::MOUSE_LEFT_BUTTON);
+
+			if (clicked)
 			{
-				scene::nextScene = sceneToCharge;
+				if (sceneToCharge != scene::SceneList::NONE)
+				{
+					scene::nextScene = sceneToCharge;
+				}
 			}
 		}
 			
@@ -200,6 +205,14 @@ namespace game
 	Texture2D* Button::GetBorderTexture()
 	{
 		return border.texture;
+	}
+
+	bool Button::IsBeingClicked()
+	{
+		bool aux;
+		aux = clicked;
+		clicked = false;
+		return aux;
 	}
 
 

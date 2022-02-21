@@ -47,6 +47,8 @@ namespace game
 
 		Texture2D* GetBorderTexture();
 
+		bool IsBeingClicked();
+
 	};
 
 	
