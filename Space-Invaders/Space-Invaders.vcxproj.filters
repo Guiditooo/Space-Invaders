@@ -52,6 +52,9 @@
     <Filter Include="Scenes\Gameplay\GameOver">
       <UniqueIdentifier>{6b9151bd-8bb9-4696-82d6-38fa162ecff5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scenes\Gameplay\Parallax">
+      <UniqueIdentifier>{77932096-a03e-4726-9615-eae7779dd23d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\General\Extern\Extern.cpp">
@@ -96,6 +99,9 @@
     <ClCompile Include="..\src\Scenes\Gameplay\GameOver\GameOver.cpp">
       <Filter>Scenes\Gameplay\GameOver</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Scenes\Gameplay\Parallax\Parallax.cpp">
+      <Filter>Scenes\Gameplay\Parallax</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\General\Extern\Extern.h">
@@ -136,6 +142,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Scenes\Gameplay\GameOver\GameOver.h">
       <Filter>Scenes\Gameplay\GameOver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Scenes\Gameplay\Parallax\Parallax.h">
+      <Filter>Scenes\Gameplay\Parallax</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,6 +4,8 @@
 #include <string>
 
 #include "General/Button/Button.h"
+#include "Parallax/Parallax.h"
+#include "GameOver/GameOver.h"
 
 namespace game
 {
@@ -65,6 +67,7 @@ namespace game
 
 		void Init()
 		{
+			InitParallax();
 			#pragma region TUTORIAL
 
 			tutorial = true;
@@ -252,6 +255,8 @@ namespace game
 				
 				CheckTimer();
 
+				UpdateParallax();
+
 				if (!gameOver)
 				{
 
@@ -420,7 +425,7 @@ namespace game
 			}
 			else
 			{
-				
+				DrawParallax();
 				if (!gameOver)
 				{
 
@@ -486,6 +491,8 @@ namespace game
 			UnloadTexture(tutorialBulletExtraTX);
 
 			DeinitGameOver();
+
+			DeinitParallax();
 
 		}
 		void ResetEnemies()
@@ -614,6 +621,11 @@ namespace game
 
 			ResetEnemies();
 			player.SetPosition(static_cast<float>(screen::width / 2 - player.GetEntityWidth() / 2), static_cast<float>(screen::height) - static_cast<float>(100));
+
+			for (short i = 0; i < PLAYER_BULLET_COUNT; i++)
+			{
+				if (playerBullets[i].IsActive())	playerBullets[i].SetInactive();
+			}
 
 			willGoDown = true;
 			willGoLeft = true;

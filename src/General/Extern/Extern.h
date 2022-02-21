@@ -62,6 +62,25 @@ namespace game
 			PLAYER
 		};
 
+		namespace parallax
+		{
+			const int PARALLAX_COUNT = 4;
+			const int PARALLEL_IMAGES = 2;
+
+			const float PARALLAX_SPEED_UP = 1.0f;
+			const float PARALLAX_SPEED_DOWN = 2.0f;
+			const float PARALLAX_SPEED_LEFT = 3.0f;
+			const float PARALLAX_SPEED_RIGHT = 5.0f;
+
+			enum class ParallaxDirection
+			{
+				P_UP,
+				P_DOWN,
+				P_LEFT,
+				P_RIGHT
+			};
+		}
+
 	}
 
 	namespace screen

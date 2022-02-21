@@ -49,8 +49,6 @@ namespace game
 			returnToMM.SetEntityHeight(restartButton.GetEntityHeight());
 			returnToMM.SetSceneToCharge(scene::SceneList::MENU);
 			returnToMM.SetPosition(static_cast<float>(screen::width * 72 / 100) - returnToMM.GetEntityWidth() / 2, restartButton.GetPosition().y);
-		
-			
 		}
 
 		void UpgradeGameOver()
@@ -66,7 +64,6 @@ namespace game
 			DrawTextEx(font, &scoreReachedText.tx[0], scoreReachedText.pos.ToVector2(), scoreReachedText.size, TEXT_SPACING, scoreReachedText.color);
 			DrawTextEx(font, &levelReachedText.tx[0], levelReachedText.pos.ToVector2(), levelReachedText.size, TEXT_SPACING, levelReachedText.color);
 							
-
 			returnToMM.Draw();
 			restartButton.Draw();
 		}
