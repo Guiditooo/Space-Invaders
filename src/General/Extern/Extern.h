@@ -67,10 +67,10 @@ namespace game
 			const int PARALLAX_COUNT = 4;
 			const int PARALLEL_IMAGES = 2;
 
-			const float PARALLAX_SPEED_UP = 1.0f;
-			const float PARALLAX_SPEED_DOWN = 2.0f;
-			const float PARALLAX_SPEED_LEFT = 3.0f;
-			const float PARALLAX_SPEED_RIGHT = 5.0f;
+			const float PARALLAX_SPEED_UP = 3.0f;
+			const float PARALLAX_SPEED_DOWN = 6.0f;
+			const float PARALLAX_SPEED_LEFT = 9.0f;
+			const float PARALLAX_SPEED_RIGHT = 15.0f;
 
 			enum class ParallaxDirection
 			{

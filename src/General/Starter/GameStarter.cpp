@@ -32,7 +32,7 @@ namespace game
 				Update();
 				Draw();
 			}
-		} while (fix::keepLooping);
+		} while (fix::keepLooping && !WindowShouldClose());
 		starter::EndWindow();
 	}
 
